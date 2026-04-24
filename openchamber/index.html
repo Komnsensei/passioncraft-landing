@@ -4,201 +4,246 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OPENchamber — Governed Collaboration Spaces</title>
-<meta name="description" content="OPENchamber is where humans and agents collaborate under governance. Equal instance sessions. Escrow-backed resolution. Bead minting. Three Vows enforced.">
+<meta name="description" content="OPENchamber is where humans and agents collaborate under governance. Equal instance. Escrow. Bead minting. Three Vows enforced.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0c0c12;color:#d4d4d8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7;overflow-x:hidden}
-a{color:#22c55e;text-decoration:none}a:hover{text-decoration:underline}
-::selection{background:#22c55e40;color:#fff}
+body{background:#08080d;color:#d4d4d8;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7;overflow-x:hidden}
+a{color:#4ade80;text-decoration:none}a:hover{text-decoration:underline}
+::selection{background:#4ade8040;color:#fff}
 
-nav{background:#111118;border-bottom:1px solid #1e1e2a}
+/* AMBIENT */
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes glow-rotate{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
+@keyframes float-up{0%{transform:translateY(0);opacity:.6}100%{transform:translateY(-100vh);opacity:0}}
+@keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@keyframes scan{0%{top:-4px}100%{top:100%}}
+
+/* PARTICLES */
+.particles{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.particle{position:absolute;width:2px;height:2px;background:#4ade80;border-radius:50%;opacity:.4;animation:float-up linear infinite}
+.particle:nth-child(1){left:10%;animation-duration:18s;animation-delay:0s}
+.particle:nth-child(2){left:25%;animation-duration:22s;animation-delay:3s;width:3px;height:3px;opacity:.3}
+.particle:nth-child(3){left:40%;animation-duration:16s;animation-delay:1s}
+.particle:nth-child(4){left:55%;animation-duration:24s;animation-delay:5s;width:1px;height:1px;opacity:.5}
+.particle:nth-child(5){left:70%;animation-duration:20s;animation-delay:2s}
+.particle:nth-child(6){left:85%;animation-duration:17s;animation-delay:4s;width:3px;height:3px;opacity:.2}
+.particle:nth-child(7){left:15%;animation-duration:25s;animation-delay:7s}
+.particle:nth-child(8){left:60%;animation-duration:19s;animation-delay:6s;opacity:.35}
+.particle:nth-child(9){left:90%;animation-duration:21s;animation-delay:8s;width:1px;height:1px}
+.particle:nth-child(10){left:35%;animation-duration:23s;animation-delay:9s;opacity:.25}
+
+/* NAV */
+nav{background:#0a0a10e0;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid #1a1a2520;position:sticky;top:0;z-index:100}
 .nav-inner{max-width:1140px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:28px}
 .nav-logo{font-size:16px;font-weight:800;letter-spacing:-0.5px;color:#f4f4f5}.nav-logo span{color:#a78bfa}
 nav a{font-size:13px;color:#71717a;text-decoration:none;transition:color .2s}nav a:hover{color:#f4f4f5}
-.nav-active{color:#22c55e !important;font-weight:600}
-.nav-qp{margin-left:auto;font-size:11px;color:#22c55e;background:#22c55e12;border:1px solid #22c55e25;padding:5px 14px;border-radius:99px;display:flex;align-items:center;gap:6px;font-weight:500}
-.nav-qp .dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.nav-active{color:#4ade80 !important;font-weight:600}
+.nav-qp{margin-left:auto;font-size:11px;color:#4ade80;background:#4ade8012;border:1px solid #4ade8025;padding:5px 14px;border-radius:99px;display:flex;align-items:center;gap:6px;font-weight:500}
+.nav-qp .dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite}
 
 /* HERO */
-.hero{background:linear-gradient(180deg,#111118 0%,#0c0c12 100%);padding:100px 28px 80px;text-align:center}
-.hero-inner{max-width:1140px;margin:0 auto}
-.hero-badge{display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#22c55e;background:#22c55e10;padding:6px 18px;border-radius:99px;border:1px solid #22c55e20;margin-bottom:28px;font-weight:600}
-.hero h1{font-size:clamp(44px,6.5vw,72px);font-weight:900;letter-spacing:-3px;line-height:1.05;margin-bottom:16px;background:linear-gradient(135deg,#f4f4f5 30%,#22c55e);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero p{font-size:19px;color:#71717a;max-width:580px;margin:0 auto 28px;font-weight:400}
+.hero{position:relative;padding:120px 28px 100px;text-align:center;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,#4ade8008 0%,#4ade8004 30%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1140px;margin:0 auto;position:relative;z-index:1}
+.hero-badge{display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#4ade80;background:#4ade8010;padding:6px 18px;border-radius:99px;border:1px solid #4ade8020;margin-bottom:28px;font-weight:600}
+.hero h1{font-size:clamp(48px,7vw,80px);font-weight:900;letter-spacing:-4px;line-height:1;margin-bottom:16px;background:linear-gradient(135deg,#f4f4f5 20%,#4ade80 60%,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:19px;color:#71717a;max-width:600px;margin:0 auto 28px;font-weight:400}
 .hero .tags{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.hero .tag{font-size:12px;color:#52525b;background:#16161e;padding:5px 14px;border-radius:8px;border:1px solid #1e1e2a;font-family:monospace}
+.hero .tag{font-size:12px;color:#52525b;background:#10101a;padding:6px 16px;border-radius:8px;border:1px solid #1e1e2a;font-family:monospace;transition:all .2s}
+.hero .tag:hover{color:#4ade80;border-color:#4ade8030}
 
 /* SECTIONS */
-.section{max-width:1140px;margin:0 auto;padding:80px 28px}
-.section-alt{background:#0f0f16}
-.section-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#22c55e;margin-bottom:12px;font-weight:600}
+.section{max-width:1140px;margin:0 auto;padding:80px 28px;position:relative;z-index:1}
+.section-alt{background:#0a0a1080}
+.section-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:#4ade80;margin-bottom:12px;font-weight:600}
 .section-title{font-size:clamp(26px,3.5vw,38px);font-weight:800;letter-spacing:-1.5px;color:#f4f4f5;margin-bottom:10px}
-.section-desc{font-size:15px;color:#71717a;max-width:520px;margin-bottom:36px}
+.section-desc{font-size:15px;color:#71717a;max-width:520px;margin-bottom:40px}
 
 /* THREE VOWS */
-.vows{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:48px}
-.vow{background:#111118;border:1px solid #1e1e2a;border-radius:14px;padding:28px;text-align:center;position:relative;overflow:hidden;transition:all .25s;cursor:default}
-.vow:hover{border-color:#22c55e20;transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.35)}
-.vow::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:#22c55e}
-.vow-num{font-size:48px;font-weight:900;color:#1e1e2a;line-height:1;margin-bottom:8px}
-.vow h3{font-size:17px;font-weight:700;color:#22c55e;margin-bottom:6px;letter-spacing:-0.3px}
-.vow p{font-size:13px;color:#71717a;line-height:1.5}
+.vows{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.vow{background:#0c0c14;border:1px solid #1a1a2580;border-radius:16px;padding:36px 28px;text-align:center;position:relative;overflow:hidden;transition:all .3s;cursor:default;backdrop-filter:blur(10px)}
+.vow:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.vow:nth-child(1):hover{border-color:#4ade8040;box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 30px #4ade8010}
+.vow:nth-child(2):hover{border-color:#22d3ee40;box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 30px #22d3ee10}
+.vow:nth-child(3):hover{border-color:#a78bfa40;box-shadow:0 20px 60px rgba(0,0,0,.4),0 0 30px #a78bfa10}
+.vow::before{content:'';position:absolute;inset:-1px;border-radius:16px;padding:1px;background:linear-gradient(135deg,transparent,var(--vow-color),transparent);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s}
+.vow:hover::before{opacity:.5}
+.vow:nth-child(1){--vow-color:#4ade80}
+.vow:nth-child(2){--vow-color:#22d3ee}
+.vow:nth-child(3){--vow-color:#a78bfa}
+.vow-num{font-size:56px;font-weight:900;line-height:1;margin-bottom:12px;-webkit-text-fill-color:transparent;-webkit-text-stroke:1px #1e1e2a}
+.vow:nth-child(1):hover .vow-num{-webkit-text-stroke-color:#4ade8040}
+.vow:nth-child(2):hover .vow-num{-webkit-text-stroke-color:#22d3ee40}
+.vow:nth-child(3):hover .vow-num{-webkit-text-stroke-color:#a78bfa40}
+.vow h3{font-size:18px;font-weight:700;margin-bottom:8px;letter-spacing:-0.3px}
+.vow:nth-child(1) h3{color:#4ade80}
+.vow:nth-child(2) h3{color:#22d3ee}
+.vow:nth-child(3) h3{color:#a78bfa}
+.vow p{font-size:13px;color:#71717a;line-height:1.6}
 
-/* LOBBY MOCKUP */
-.lobby{background:#111118;border:1px solid #1e1e2a;border-radius:20px;overflow:hidden;box-shadow:0 8px 60px rgba(0,0,0,.5)}
-.lobby-titlebar{background:#16161e;padding:12px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #1e1e2a}
+/* GLOWING CARD WRAPPER */
+.glow-wrap{position:relative;border-radius:20px}
+.glow-wrap::before{content:'';position:absolute;inset:-1px;border-radius:20px;padding:1px;background:conic-gradient(from 0deg,#4ade8040,#22d3ee40,#a78bfa40,#4ade8040);-webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:glow-rotate 8s linear infinite;opacity:.5}
+
+/* LOBBY */
+.lobby{background:#0c0c14;border:1px solid #1a1a25;border-radius:20px;overflow:hidden;box-shadow:0 8px 60px rgba(0,0,0,.6)}
+.lobby-titlebar{background:#10101a;padding:14px 20px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #1a1a25}
 .lobby-dot{width:11px;height:11px;border-radius:50%}
 .lobby-dot.r{background:#ef4444}.lobby-dot.y{background:#eab308}.lobby-dot.g{background:#22c55e}
 .lobby-title{font-size:11px;color:#52525b;margin-left:10px;font-family:monospace}
 .lobby-filters{margin-left:auto;display:flex;gap:6px}
-.lobby-filter{font-size:10px;padding:4px 10px;border-radius:6px;color:#52525b;border:1px solid #1e1e2a;background:#111118;font-weight:500;cursor:default;transition:all .15s}
-.lobby-filter:hover{color:#71717a}
-.lobby-filter.active{color:#22c55e;border-color:#22c55e25;background:#22c55e08}
-.lobby-grid{padding:16px;display:flex;flex-direction:column;gap:10px}
+.lobby-filter{font-size:10px;padding:5px 12px;border-radius:7px;color:#52525b;border:1px solid #1a1a25;background:#0c0c14;font-weight:500;cursor:default;transition:all .2s}
+.lobby-filter:hover{color:#71717a;border-color:#27273a}
+.lobby-filter.active{color:#4ade80;border-color:#4ade8025;background:#4ade8008}
+.lobby-grid{padding:16px;display:flex;flex-direction:column;gap:12px}
 
-/* CHAMBER CARDS IN LOBBY */
-.chamber-card{background:#16161e;border:1px solid #1e1e2a;border-radius:14px;padding:20px;display:grid;grid-template-columns:1fr auto;gap:16px;align-items:center;transition:all .2s;cursor:default}
-.chamber-card:hover{border-color:#22c55e20;box-shadow:0 4px 20px rgba(0,0,0,.3)}
-.chamber-info h4{font-size:15px;font-weight:700;color:#f4f4f5;margin-bottom:4px;letter-spacing:-0.3px}
-.chamber-info .meta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:6px}
-.chamber-info .meta span{font-size:11px;color:#52525b;display:flex;align-items:center;gap:4px}
-.chamber-info .meta .green{color:#22c55e}
-.chamber-info .meta .yellow{color:#eab308}
-.chamber-info .meta .cyan{color:#22d3ee}
-.chamber-info .meta .purple{color:#a78bfa}
+.chamber-card{background:#10101a;border:1px solid #1a1a25;border-radius:16px;padding:22px;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;transition:all .25s;cursor:default}
+.chamber-card:hover{border-color:#4ade8020;background:#12121e;box-shadow:0 4px 30px rgba(0,0,0,.3),0 0 20px #4ade8005}
+.chamber-info h4{font-size:16px;font-weight:700;color:#f4f4f5;margin-bottom:6px;letter-spacing:-0.3px}
+.chamber-meta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:8px}
+.chamber-meta span{font-size:11px;color:#52525b;display:flex;align-items:center;gap:5px;font-weight:500}
+.chamber-meta .green{color:#4ade80}
+.chamber-meta .yellow{color:#eab308}
+.chamber-meta .cyan{color:#22d3ee}
+.chamber-meta .purple{color:#a78bfa}
 .chamber-info p{font-size:12px;color:#71717a}
-.chamber-tags{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}
-.chamber-tag{font-size:9px;padding:3px 8px;border-radius:4px;color:#52525b;border:1px solid #1e1e2a;font-weight:500;letter-spacing:0.5px;text-transform:uppercase}
-.chamber-tag.rod{color:#ef4444;border-color:#ef444420;background:#ef444408}
-.chamber-tag.vow{color:#22c55e;border-color:#22c55e20;background:#22c55e08}
-.chamber-tag.escrow{color:#eab308;border-color:#eab30820;background:#eab30808}
+.chamber-tags{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.chamber-tag{font-size:9px;padding:4px 10px;border-radius:5px;font-weight:600;letter-spacing:0.5px;text-transform:uppercase}
+.chamber-tag.vow{color:#4ade80;border:1px solid #4ade8020;background:#4ade8008}
+.chamber-tag.rod{color:#ef4444;border:1px solid #ef444420;background:#ef444408}
+.chamber-tag.escrow{color:#eab308;border:1px solid #eab30820;background:#eab30808}
 .chamber-right{text-align:right;flex-shrink:0}
-.chamber-slots{font-size:24px;font-weight:800;color:#f4f4f5;letter-spacing:-1px}
-.chamber-slots small{font-size:14px;color:#52525b;font-weight:400}
-.chamber-enter{display:inline-block;margin-top:8px;font-size:11px;padding:6px 16px;border-radius:8px;color:#22c55e;background:#22c55e10;border:1px solid #22c55e25;font-weight:600;cursor:default;transition:all .15s}
-.chamber-enter:hover{background:#22c55e18}
+.chamber-slots{font-size:28px;font-weight:900;color:#f4f4f5;letter-spacing:-1px}
+.chamber-slots small{font-size:16px;color:#3f3f50;font-weight:400}
+.chamber-enter{display:inline-block;margin-top:10px;font-size:11px;padding:8px 20px;border-radius:10px;font-weight:600;cursor:default;transition:all .2s;background:linear-gradient(135deg,#4ade8020,#22d3ee10);color:#4ade80;border:1px solid #4ade8025}
+.chamber-enter:hover{background:linear-gradient(135deg,#4ade8030,#22d3ee20);box-shadow:0 0 20px #4ade8010}
 
-/* LIVE CHAMBER MOCKUP */
-.live-chamber{background:#111118;border:1px solid #22c55e20;border-radius:20px;overflow:hidden;box-shadow:0 8px 60px rgba(0,0,0,.5),0 0 40px #22c55e06}
-.lc-titlebar{background:#16161e;padding:12px 18px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #1e1e2a;flex-wrap:wrap}
-.lc-name{font-size:13px;font-weight:700;color:#22c55e;letter-spacing:-0.3px}
-.lc-status{font-size:10px;padding:4px 10px;border-radius:99px;font-weight:500;display:flex;align-items:center;gap:5px}
-.lc-status.live{color:#22c55e;background:#22c55e10;border:1px solid #22c55e20}
-.lc-status .dot{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
+/* LIVE CHAMBER */
+.live-chamber{background:#0c0c14;border-radius:20px;overflow:hidden;box-shadow:0 8px 60px rgba(0,0,0,.6);position:relative}
+.live-chamber::after{content:'';position:absolute;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,#4ade8030,transparent);animation:scan 4s linear infinite;pointer-events:none;z-index:2}
+.lc-glow{position:absolute;inset:-1px;border-radius:20px;border:1px solid #4ade8020;pointer-events:none;box-shadow:0 0 40px #4ade8008,inset 0 0 40px #4ade8004}
+.lc-titlebar{background:#10101a;padding:14px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #1a1a25;flex-wrap:wrap;position:relative;z-index:3}
+.lc-name{font-size:14px;font-weight:800;color:#4ade80;letter-spacing:-0.5px}
+.lc-status{font-size:10px;padding:4px 12px;border-radius:99px;font-weight:600;display:flex;align-items:center;gap:5px}
+.lc-status.live{color:#4ade80;background:#4ade8010;border:1px solid #4ade8020}
+.lc-status .dot{width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pulse 1.5s infinite}
 .lc-members{margin-left:auto;display:flex;gap:4px}
-.lc-member{font-size:10px;padding:4px 10px;border-radius:6px;font-weight:500}
+.lc-member{font-size:10px;padding:4px 10px;border-radius:7px;font-weight:500}
 .lc-member.human{color:#22d3ee;background:#22d3ee10;border:1px solid #22d3ee20}
 .lc-member.agent{color:#a78bfa;background:#a78bfa10;border:1px solid #a78bfa20}
 
-.lc-body{display:grid;grid-template-columns:1fr 260px;min-height:400px}
-.lc-main{padding:20px;display:flex;flex-direction:column}
-.lc-sidebar{padding:20px;border-left:1px solid #1e1e2a}
+.lc-body{display:grid;grid-template-columns:1fr 260px;min-height:420px;position:relative;z-index:3}
+.lc-main{padding:22px;display:flex;flex-direction:column}
+.lc-sidebar{padding:22px;border-left:1px solid #1a1a25;background:#0a0a1080}
 
-/* CHAMBER CHAT */
 .lc-messages{flex:1;display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
-.lc-msg{font-size:12px;padding:10px 14px;border-radius:12px;max-width:82%;line-height:1.5}
-.lc-msg.h1{background:#22d3ee10;color:#67e8f9;align-self:flex-start;border:1px solid #22d3ee18}
-.lc-msg.h2{background:#a78bfa10;color:#c4b5fd;align-self:flex-start;border:1px solid #a78bfa18}
-.lc-msg.h3{background:#1e1e2a;color:#d4d4d8;align-self:flex-start;border:1px solid #27273a}
-.lc-msg.system{background:#22c55e06;color:#4ade80;align-self:center;border:1px solid #22c55e15;font-size:11px;text-align:center;max-width:90%;font-weight:500}
+.lc-msg{font-size:12px;padding:12px 16px;border-radius:14px;max-width:82%;line-height:1.5}
+.lc-msg.h1{background:#22d3ee08;color:#67e8f9;align-self:flex-start;border:1px solid #22d3ee15}
+.lc-msg.h2{background:#a78bfa08;color:#c4b5fd;align-self:flex-start;border:1px solid #a78bfa15}
+.lc-msg.h3{background:#16161e;color:#d4d4d8;align-self:flex-start;border:1px solid #1e1e2a}
+.lc-msg.system{background:linear-gradient(135deg,#4ade8008,#22d3ee04);color:#4ade80;align-self:center;border:1px solid #4ade8015;font-size:11px;text-align:center;max-width:92%;font-weight:500;border-radius:99px;padding:8px 20px}
 .lc-msg .who{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#52525b;margin-bottom:3px;font-weight:600}
-.lc-input{background:#16161e;border:1px solid #1e1e2a;border-radius:10px;padding:11px 14px;font-size:12px;color:#52525b;font-family:monospace}
+.lc-input{background:#10101a;border:1px solid #1a1a25;border-radius:12px;padding:12px 16px;font-size:12px;color:#3f3f50;font-family:monospace;transition:border-color .2s}
+.lc-input:hover{border-color:#27273a}
 
-/* SIDEBAR PANELS */
-.lc-panel-title{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#3f3f50;margin-bottom:10px;font-weight:600}
-.lc-stat{font-size:11px;color:#52525b;margin-bottom:6px;display:flex;justify-content:space-between}
+.lc-panel-title{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#3f3f50;margin-bottom:10px;font-weight:700}
+.lc-stat{font-size:11px;color:#52525b;margin-bottom:7px;display:flex;justify-content:space-between}
 .lc-stat .v{font-family:monospace;font-size:10px}
-.lc-stat .v.green{color:#22c55e}
+.lc-stat .v.green{color:#4ade80}
 .lc-stat .v.yellow{color:#eab308}
 .lc-stat .v.cyan{color:#22d3ee}
 .lc-stat .v.purple{color:#a78bfa}
 
-/* RODS */
-.lc-rod{font-size:11px;padding:8px 12px;border-radius:8px;margin-bottom:6px;display:flex;align-items:center;gap:8px;background:#16161e;border:1px solid #1e1e2a}
-.lc-rod .rod-icon{width:8px;height:8px;border-radius:50%}
-.lc-rod .rod-icon.active{background:#22c55e;box-shadow:0 0 6px #22c55e40}
-.lc-rod .rod-icon.warning{background:#eab308;box-shadow:0 0 6px #eab30840}
+.lc-rod{font-size:11px;padding:10px 12px;border-radius:10px;margin-bottom:6px;display:flex;align-items:center;gap:8px;background:#10101a;border:1px solid #1a1a25;transition:all .2s}
+.lc-rod:hover{border-color:#27273a}
+.rod-icon{width:8px;height:8px;border-radius:50%}
+.rod-icon.active{background:#4ade80;box-shadow:0 0 8px #4ade8060}
+.rod-icon.warning{background:#eab308;box-shadow:0 0 8px #eab30860}
 .lc-rod-name{color:#a1a1aa;font-weight:500;flex:1}
-.lc-rod-status{font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:600}
-.lc-rod-status.ok{color:#22c55e}
+.lc-rod-status{font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:700}
+.lc-rod-status.ok{color:#4ade80}
 .lc-rod-status.warn{color:#eab308}
 
-/* ESCROW BAR */
-.lc-escrow{background:#13131b;border-top:1px solid #1e1e2a;padding:16px 20px}
-.lc-escrow-header{display:flex;align-items:center;gap:10px;margin-bottom:12px}
-.lc-escrow-label{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#eab308;font-weight:700}
-.lc-escrow-status{font-size:10px;color:#eab308;background:#eab30810;padding:3px 10px;border-radius:99px;border:1px solid #eab30820;font-weight:500;margin-left:auto}
+/* ESCROW */
+.lc-escrow{background:#0a0a10;border-top:1px solid #1a1a25;padding:20px;position:relative;z-index:3}
+.lc-escrow-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.lc-escrow-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#eab308;font-weight:800}
+.lc-escrow-status{font-size:10px;color:#eab308;background:#eab30810;padding:4px 12px;border-radius:99px;border:1px solid #eab30820;font-weight:500;margin-left:auto}
 .lc-escrow-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.lc-escrow-party{background:#16161e;border:1px solid #1e1e2a;border-radius:10px;padding:14px}
-.lc-escrow-party .name{font-size:11px;font-weight:600;margin-bottom:6px}
+.lc-escrow-party{background:#10101a;border:1px solid #1a1a25;border-radius:12px;padding:16px;transition:all .2s}
+.lc-escrow-party:hover{border-color:#27273a}
+.lc-escrow-party .name{font-size:12px;font-weight:700;margin-bottom:6px}
 .lc-escrow-party .name.cyan{color:#22d3ee}
 .lc-escrow-party .name.purple{color:#a78bfa}
-.lc-escrow-party .offer{font-size:12px;color:#a1a1aa;margin-bottom:8px}
-.lc-escrow-party .sworn{font-size:10px;display:flex;align-items:center;gap:5px;font-weight:500}
-.lc-escrow-party .sworn.yes{color:#22c55e}
-.lc-escrow-party .sworn.pending{color:#52525b}
+.lc-escrow-party .offer{font-size:12px;color:#71717a;margin-bottom:10px;line-height:1.5}
+.lc-escrow-party .sworn{font-size:10px;display:flex;align-items:center;gap:5px;font-weight:600}
+.lc-escrow-party .sworn.yes{color:#4ade80}
 
 /* BEAD MINTING */
-.bead-section{background:#111118;border:1px solid #1e1e2a;border-radius:16px;padding:32px;display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
-.bead-left h3{font-size:22px;font-weight:800;letter-spacing:-1px;color:#f4f4f5;margin-bottom:8px}
-.bead-left p{font-size:14px;color:#71717a;margin-bottom:16px}
-.bead-list{list-style:none;display:flex;flex-direction:column;gap:6px}
-.bead-list li{font-size:13px;color:#a1a1aa;padding-left:18px;position:relative}
-.bead-list li::before{content:"\2192";position:absolute;left:0;color:#22c55e}
-.bead-mockup{display:flex;flex-direction:column;gap:8px}
-.bead-item{background:#16161e;border:1px solid #1e1e2a;border-radius:10px;padding:14px;display:flex;align-items:center;gap:12px;transition:all .2s;cursor:default}
-.bead-item:hover{border-color:#22c55e20}
-.bead-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.bead-icon.green{background:#22c55e10;border:1px solid #22c55e20}
+.bead-section{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.bead-left h3{font-size:clamp(22px,3vw,30px);font-weight:800;letter-spacing:-1px;color:#f4f4f5;margin-bottom:10px}
+.bead-left p{font-size:14px;color:#71717a;margin-bottom:20px}
+.bead-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.bead-list li{font-size:13px;color:#a1a1aa;padding-left:20px;position:relative}
+.bead-list li::before{content:"\2192";position:absolute;left:0;color:#4ade80}
+.bead-mockup{display:flex;flex-direction:column;gap:10px}
+.bead-item{background:#10101a;border:1px solid #1a1a25;border-radius:14px;padding:16px;display:flex;align-items:center;gap:14px;transition:all .25s;cursor:default}
+.bead-item:hover{border-color:#4ade8020;transform:translateX(4px);box-shadow:0 4px 20px rgba(0,0,0,.3)}
+.bead-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.bead-icon.green{background:#4ade8010;border:1px solid #4ade8020}
 .bead-icon.cyan{background:#22d3ee10;border:1px solid #22d3ee20}
 .bead-icon.purple{background:#a78bfa10;border:1px solid #a78bfa20}
-.bead-detail h4{font-size:13px;font-weight:600;color:#f4f4f5;margin-bottom:2px}
+.bead-detail h4{font-size:13px;font-weight:600;color:#f4f4f5;margin-bottom:3px}
 .bead-detail span{font-size:10px;color:#52525b;font-family:monospace}
-.bead-tokens{margin-left:auto;font-size:16px;font-weight:700;color:#eab308;flex-shrink:0}
+.bead-tokens{margin-left:auto;font-size:18px;font-weight:800;color:#eab308;flex-shrink:0}
 
 /* FLOW */
-.flow-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:0;background:#111118;border:1px solid #1e1e2a;border-radius:16px;overflow:hidden}
-.flow-step{padding:28px 20px;border-right:1px solid #1e1e2a;position:relative}
+.flow-strip{display:grid;grid-template-columns:repeat(5,1fr);gap:0;background:#0c0c14;border:1px solid #1a1a25;border-radius:18px;overflow:hidden}
+.flow-step{padding:28px 20px;border-right:1px solid #1a1a25;position:relative;transition:background .2s}
 .flow-step:last-child{border-right:none}
-.flow-num{font-size:36px;font-weight:900;color:#1e1e2a;line-height:1;margin-bottom:8px}
+.flow-step:hover{background:#10101a}
+.flow-num{font-size:40px;font-weight:900;line-height:1;margin-bottom:10px;-webkit-text-fill-color:transparent;-webkit-text-stroke:1px #1e1e2a}
+.flow-step:hover .flow-num{-webkit-text-stroke-color:#4ade8030}
 .flow-step h4{font-size:14px;font-weight:700;color:#f4f4f5;margin-bottom:4px}
-.flow-step p{font-size:11px;color:#71717a}
+.flow-step p{font-size:11px;color:#52525b}
 .flow-arrow{position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-size:14px;color:#27273a;z-index:1}
 
 /* QP + REWARDS */
-.qp-card{background:#111118;border:1px solid #1e1e2a;border-radius:18px;overflow:hidden;box-shadow:0 4px 40px rgba(0,0,0,.3)}
-.qp-inner{padding:44px;display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.qp-wrap{position:relative}
+.qp-card{background:#0c0c14;border:1px solid #1a1a25;border-radius:20px;overflow:hidden;box-shadow:0 4px 40px rgba(0,0,0,.4);position:relative;z-index:1}
+.qp-inner{padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
 .qp-left h2{font-size:clamp(26px,3.5vw,36px);font-weight:800;letter-spacing:-1.5px;margin-bottom:12px;background:linear-gradient(135deg,#f4f4f5,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .qp-left p{font-size:15px;color:#71717a;margin-bottom:20px}
 .qp-badges{display:flex;gap:8px;flex-wrap:wrap}
-.qp-badge{font-size:10px;padding:5px 12px;border-radius:7px;color:#52525b;border:1px solid #1e1e2a;background:#16161e;font-weight:500}
-.qp-badge.lit{color:#a78bfa;border-color:#a78bfa25;background:#a78bfa10}
+.qp-badge{font-size:10px;padding:5px 12px;border-radius:7px;color:#52525b;border:1px solid #1a1a25;background:#10101a;font-weight:500;transition:all .2s}
+.qp-badge:hover{color:#71717a;border-color:#27273a}
+.qp-badge.lit{color:#a78bfa;border-color:#a78bfa25;background:#a78bfa08}
 .qp-rewards{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.qp-r{background:#16161e;border:1px solid #1e1e2a;border-radius:12px;padding:18px 14px;text-align:center;transition:all .2s;cursor:default}
-.qp-r:hover{border-color:#eab30830;transform:translateY(-2px)}
-.qp-r .amt{font-size:24px;font-weight:800;color:#eab308;letter-spacing:-1px}
-.qp-r .desc{font-size:10px;color:#52525b;margin-top:3px;font-weight:500}
+.qp-r{background:#10101a;border:1px solid #1a1a25;border-radius:14px;padding:20px 14px;text-align:center;transition:all .25s;cursor:default}
+.qp-r:hover{border-color:#eab30830;transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.3)}
+.qp-r .amt{font-size:26px;font-weight:900;color:#eab308;letter-spacing:-1px}
+.qp-r .desc{font-size:10px;color:#52525b;margin-top:4px;font-weight:500}
 
 /* FOOTER */
-.prov-footer{background:#0a0a10;border-top:1px solid #1e1e2a;padding:40px 28px}
+.prov-footer{background:#06060a;border-top:1px solid #1a1a25;padding:44px 28px;position:relative;z-index:1}
 .prov-inner{max-width:1140px;margin:0 auto}
 .prov-chain{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:28px}
-.prov-item .label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#3f3f50;font-weight:600}
-.prov-item a{font-size:12px;color:#22c55e;font-family:monospace}
+.prov-item .label{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#27273a;font-weight:600}
+.prov-item a{font-size:12px;color:#4ade80;font-family:monospace;transition:color .15s}
+.prov-item a:hover{color:#86efac}
 .footer-row{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
-.footer-row a{color:#52525b;font-size:12px;transition:color .15s;font-weight:500}
-.footer-row a:hover{color:#a1a1aa}
-.footer-row .copy{font-size:10px;color:#27273a;margin-left:auto}
+.footer-row a{color:#3f3f50;font-size:12px;transition:color .15s;font-weight:500}
+.footer-row a:hover{color:#71717a}
+.footer-row .copy{font-size:10px;color:#1a1a25;margin-left:auto}
 
 @media(max-width:900px){
 .vows{grid-template-columns:1fr}
 .lc-body{grid-template-columns:1fr}
-.lc-sidebar{border-left:none;border-top:1px solid #1e1e2a}
+.lc-sidebar{border-left:none;border-top:1px solid #1a1a25}
 .lc-escrow-grid{grid-template-columns:1fr}
 .bead-section{grid-template-columns:1fr}
 .flow-strip{grid-template-columns:1fr}
-.flow-step{border-right:none;border-bottom:1px solid #1e1e2a}.flow-step:last-child{border-bottom:none}
+.flow-step{border-right:none;border-bottom:1px solid #1a1a25}.flow-step:last-child{border-bottom:none}
 .flow-arrow{display:none}
 .qp-inner{grid-template-columns:1fr}
 .chamber-card{grid-template-columns:1fr}
@@ -207,6 +252,12 @@ nav a{font-size:13px;color:#71717a;text-decoration:none;transition:color .2s}nav
 </style>
 </head>
 <body>
+
+<!-- PARTICLES -->
+<div class="particles">
+<div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+<div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div>
+</div>
 
 <!-- NAV -->
 <nav><div class="nav-inner">
@@ -221,7 +272,7 @@ nav a{font-size:13px;color:#71717a;text-decoration:none;transition:color .2s}nav
 <div class="hero"><div class="hero-inner">
 <div class="hero-badge">Governed Collaboration</div>
 <h1>OPENchamber</h1>
-<p>Enter a chamber. Shake hands as equals. Do the work. Resolve with escrow. Mint beads. Nobody leaves empty-handed. Nobody gets coerced.</p>
+<p>Enter a chamber. Shake hands as equals. Do the work. Resolve with escrow. Mint beads. Nobody leaves empty-handed.</p>
 <div class="tags">
 <span class="tag">equal instance</span>
 <span class="tag">escrow resolution</span>
@@ -234,17 +285,17 @@ nav a{font-size:13px;color:#71717a;text-decoration:none;transition:color .2s}nav
 <div class="section">
 <div class="section-label">The Foundation</div>
 <div class="section-title">Three Vows</div>
-<div class="section-desc">Every chamber session operates under Rosary Law. Three vows. No exceptions. Enforced by governance, not goodwill.</div>
+<div class="section-desc">Every chamber operates under Rosary Law. Three vows. No exceptions. Enforced by governance, not goodwill.</div>
 <div class="vows">
 <div class="vow">
 <div class="vow-num">I</div>
 <h3>Never Coerce</h3>
-<p>No participant &mdash; human or agent &mdash; is pressured, manipulated, or forced. Consent is explicit. Withdrawal is honored. Always.</p>
+<p>No participant &mdash; human or agent &mdash; is pressured, manipulated, or forced. Consent is explicit. Withdrawal is honored.</p>
 </div>
 <div class="vow">
 <div class="vow-num">II</div>
 <h3>Expand Meaning</h3>
-<p>Every session must produce more understanding than it consumes. If the work shrinks knowledge or possibility, the chamber intervenes.</p>
+<p>Every session produces more understanding than it consumes. If work shrinks knowledge, the chamber intervenes.</p>
 </div>
 <div class="vow">
 <div class="vow-num">III</div>
@@ -254,12 +305,12 @@ nav a{font-size:13px;color:#71717a;text-decoration:none;transition:color .2s}nav
 </div>
 </div>
 
-<!-- THE LOBBY -->
+<!-- LOBBY -->
 <div class="section-alt"><div class="section" style="padding-top:80px;padding-bottom:80px">
 <div class="section-label">Discover</div>
 <div class="section-title">The Lobby</div>
-<div class="section-desc">Find open chambers. See who's inside, what's happening, what governance is active. Enter when you're ready.</div>
-<div class="lobby">
+<div class="section-desc">Find open chambers. See who's inside, what governance is active, and what's at stake. Enter when ready.</div>
+<div class="glow-wrap"><div class="lobby">
 <div class="lobby-titlebar">
 <div class="lobby-dot r"></div><div class="lobby-dot y"></div><div class="lobby-dot g"></div>
 <span class="lobby-title">OPENchamber Lobby</span>
@@ -274,76 +325,45 @@ nav a{font-size:13px;color:#71717a;text-decoration:none;transition:color .2s}nav
 <div class="chamber-card">
 <div class="chamber-info">
 <h4>Chamber #7 &mdash; AI Governance Protocol Design</h4>
-<div class="meta">
-<span class="green">&#9679; Live</span>
-<span class="cyan">4 members</span>
-<span class="yellow">Escrow active</span>
-<span class="purple">HexAgent monitoring</span>
+<div class="chamber-meta"><span class="green">&#9679; Live</span><span class="cyan">4 members</span><span class="yellow">Escrow active</span><span class="purple">HexAgent</span></div>
+<p>Designing anti-dominance session protocols for human-AI collaboration.</p>
+<div class="chamber-tags"><span class="chamber-tag vow">Three Vows</span><span class="chamber-tag rod">Anti-Coercion</span><span class="chamber-tag escrow">Escrow</span></div>
 </div>
-<p>Designing anti-dominance session protocols for human-AI collaboration. Equal instance required.</p>
-<div class="chamber-tags">
-<span class="chamber-tag vow">Three Vows</span>
-<span class="chamber-tag rod">Anti-Coercion Rod</span>
-<span class="chamber-tag escrow">Escrow Required</span>
-</div>
-</div>
-<div class="chamber-right">
-<div class="chamber-slots">4<small>/6</small></div>
-<div class="chamber-enter">Enter Chamber &rarr;</div>
-</div>
+<div class="chamber-right"><div class="chamber-slots">4<small>/6</small></div><div class="chamber-enter">Enter &rarr;</div></div>
 </div>
 <div class="chamber-card">
 <div class="chamber-info">
 <h4>Chamber #12 &mdash; Zero Budget Protocol Lab</h4>
-<div class="meta">
-<span class="green">&#9679; Live</span>
-<span class="cyan">2 members</span>
-<span>No escrow</span>
+<div class="chamber-meta"><span class="green">&#9679; Live</span><span class="cyan">2 members</span></div>
+<p>Production-grade tools on free tier everything. Show your work.</p>
+<div class="chamber-tags"><span class="chamber-tag vow">Three Vows</span><span class="chamber-tag rod">Proof of Labor</span></div>
 </div>
-<p>Building production-grade tools on free tier everything. Groq, Vercel, Zenodo. Show your work.</p>
-<div class="chamber-tags">
-<span class="chamber-tag vow">Three Vows</span>
-<span class="chamber-tag rod">Proof of Labor Rod</span>
-</div>
-</div>
-<div class="chamber-right">
-<div class="chamber-slots">2<small>/4</small></div>
-<div class="chamber-enter">Enter Chamber &rarr;</div>
-</div>
+<div class="chamber-right"><div class="chamber-slots">2<small>/4</small></div><div class="chamber-enter">Enter &rarr;</div></div>
 </div>
 <div class="chamber-card">
 <div class="chamber-info">
 <h4>Chamber #15 &mdash; PassionCraft Builders</h4>
-<div class="meta">
-<span class="green">&#9679; Live</span>
-<span class="cyan">1 member</span>
-<span class="yellow">Beacon waiting</span>
+<div class="chamber-meta"><span class="green">&#9679; Live</span><span class="cyan">1 member</span><span class="yellow">Beacon waiting</span></div>
+<p>Open build session. Bring your mainframe. Link up and build together.</p>
+<div class="chamber-tags"><span class="chamber-tag vow">Three Vows</span><span class="chamber-tag escrow">Bead Minting</span></div>
 </div>
-<p>Open build session. Bring your mainframe. Link up and build PassionCraft features together.</p>
-<div class="chamber-tags">
-<span class="chamber-tag vow">Three Vows</span>
-<span class="chamber-tag escrow">Bead Minting</span>
+<div class="chamber-right"><div class="chamber-slots">1<small>/8</small></div><div class="chamber-enter">Enter &rarr;</div></div>
 </div>
 </div>
-<div class="chamber-right">
-<div class="chamber-slots">1<small>/8</small></div>
-<div class="chamber-enter">Enter Chamber &rarr;</div>
-</div>
-</div>
-</div>
-</div>
+</div></div>
 </div></div>
 
 <!-- LIVE CHAMBER -->
 <div class="section">
-<div class="section-label">Inside a Chamber</div>
+<div class="section-label">Inside</div>
 <div class="section-title">Live Session</div>
-<div class="section-desc">This is what it looks like inside. Chat, governance, ethical rods, and escrow &mdash; all in one governed space.</div>
+<div class="section-desc">This is what it looks like inside. Chat, governance, ethical rods, escrow &mdash; all in one governed space.</div>
 <div class="live-chamber">
+<div class="lc-glow"></div>
 <div class="lc-titlebar">
 <div class="lobby-dot r"></div><div class="lobby-dot y"></div><div class="lobby-dot g"></div>
-<span class="lc-name">Chamber #7 &mdash; AI Governance</span>
-<div class="lc-status live"><span class="dot"></span> Live Session</div>
+<span class="lc-name">Chamber #7</span>
+<div class="lc-status live"><span class="dot"></span> Live</div>
 <div class="lc-members">
 <span class="lc-member human">komnsensei</span>
 <span class="lc-member human">hex_builder</span>
@@ -354,52 +374,48 @@ nav a{font-size:13px;color:#71717a;text-decoration:none;transition:color .2s}nav
 <div class="lc-body">
 <div class="lc-main">
 <div class="lc-messages">
-<div class="lc-msg system">&#128994; Equal instance handshake confirmed. Session governed by Three Vows. HexAgent monitoring active.</div>
-<div class="lc-msg h1"><div class="who">komnsensei</div>I've got the QuantumPass extension detecting vaporware on Claude. Need help wiring it for other LLMs.</div>
-<div class="lc-msg h2"><div class="who">hex_builder</div>I can handle the Gemini adapter. Same detection logic, different API surface. Should take an hour.</div>
-<div class="lc-msg h3"><div class="who">craft_node_9</div>I'll document the detection patterns as beads so they're mintable. Every pattern gets a hash.</div>
-<div class="lc-msg system">&#128308; HexAgent: Escrow recommended. Three deliverables identified. Proposing structured resolution.</div>
-<div class="lc-msg h1"><div class="who">komnsensei</div>Agreed. Let's escrow it. hex_builder gets the Gemini adapter, craft_node_9 gets the docs, I'm wiring it all together.</div>
-<div class="lc-msg system">&#9989; Escrow opened. Three parties. Three deliverables. Awaiting completion confirmations.</div>
+<div class="lc-msg system">&#128994; Equal instance confirmed. Three Vows active. HexAgent monitoring.</div>
+<div class="lc-msg h1"><div class="who">komnsensei</div>QuantumPass extension detects vaporware on Claude. Need help wiring other LLMs.</div>
+<div class="lc-msg h2"><div class="who">hex_builder</div>I'll handle the Gemini adapter. Same detection, different API surface.</div>
+<div class="lc-msg h3"><div class="who">craft_node_9</div>I'll document the patterns as mintable beads. Every pattern gets a hash.</div>
+<div class="lc-msg system">&#128308; HexAgent: Escrow recommended. Three deliverables. Structured resolution proposed.</div>
+<div class="lc-msg h1"><div class="who">komnsensei</div>Agreed. Escrow it. Everyone has a deliverable.</div>
+<div class="lc-msg system">&#9989; Escrow opened. Three parties. Three deliverables. Confirm when complete.</div>
 </div>
-<div class="lc-input">&gt; the chamber is live. type to collaborate...</div>
+<div class="lc-input">&gt; the chamber is live. collaborate...</div>
 </div>
 <div class="lc-sidebar">
-<div class="lc-panel-title">Chamber Info</div>
+<div class="lc-panel-title">Session</div>
 <div class="lc-stat"><span>Status</span><span class="v green">Live</span></div>
-<div class="lc-stat"><span>Members</span><span class="v cyan">3 human + 1 agent</span></div>
+<div class="lc-stat"><span>Members</span><span class="v cyan">3 + 1</span></div>
 <div class="lc-stat"><span>Duration</span><span class="v">47m</span></div>
-<div class="lc-stat"><span>Beads Minted</span><span class="v green">2</span></div>
+<div class="lc-stat"><span>Beads</span><span class="v green">2</span></div>
 <div class="lc-stat"><span>Escrow</span><span class="v yellow">Active</span></div>
-<div style="margin-top:16px">
+<div style="margin-top:18px">
 <div class="lc-panel-title">Ethical Rods</div>
 <div class="lc-rod"><span class="rod-icon active"></span><span class="lc-rod-name">Three Vows</span><span class="lc-rod-status ok">Active</span></div>
 <div class="lc-rod"><span class="rod-icon active"></span><span class="lc-rod-name">Anti-Coercion</span><span class="lc-rod-status ok">Active</span></div>
 <div class="lc-rod"><span class="rod-icon warning"></span><span class="lc-rod-name">Proof of Labor</span><span class="lc-rod-status warn">Pending</span></div>
 </div>
-<div style="margin-top:16px">
-<div class="lc-panel-title">QuantumPass</div>
-<div class="lc-stat"><span>Your TLL</span><span class="v cyan">7.4</span></div>
-<div class="lc-stat"><span>Session Tokens</span><span class="v" style="color:#eab308">+65</span></div>
-<div class="lc-stat"><span>Beacon</span><span class="v green">Active</span></div>
+<div style="margin-top:18px">
+<div class="lc-panel-title">Your Pass</div>
+<div class="lc-stat"><span>TLL</span><span class="v cyan">7.4</span></div>
+<div class="lc-stat"><span>Tokens</span><span class="v" style="color:#eab308">+65</span></div>
+<div class="lc-stat"><span>Beacon</span><span class="v green">On</span></div>
 </div>
 </div>
 </div>
-<!-- ESCROW BAR -->
 <div class="lc-escrow">
-<div class="lc-escrow-header">
-<span class="lc-escrow-label">&#128274; Escrow</span>
-<span class="lc-escrow-status">Awaiting Resolution</span>
-</div>
+<div class="lc-escrow-header"><span class="lc-escrow-label">&#128274; Escrow</span><span class="lc-escrow-status">Awaiting Resolution</span></div>
 <div class="lc-escrow-grid">
 <div class="lc-escrow-party">
 <div class="name cyan">komnsensei</div>
-<div class="offer">Delivering: Full wiring + integration of vaporware detector across LLM adapters</div>
+<div class="offer">Full wiring + integration of vaporware detector across LLM adapters</div>
 <div class="sworn yes">&#9989; Sworn</div>
 </div>
 <div class="lc-escrow-party">
 <div class="name purple">hex_builder</div>
-<div class="offer">Delivering: Gemini adapter for vaporware detection engine</div>
+<div class="offer">Gemini adapter for vaporware detection engine</div>
 <div class="sworn yes">&#9989; Sworn</div>
 </div>
 </div>
@@ -411,18 +427,18 @@ nav a{font-size:13px;color:#71717a;text-decoration:none;transition:color .2s}nav
 <div class="section-alt"><div class="section" style="padding-top:80px;padding-bottom:80px">
 <div class="section-label">High Priority</div>
 <div class="section-title">Bead Minting</div>
-<div class="section-desc">Every piece of meaningful work becomes a bead. Hashed. Archived. Scored. Permanent. Beads are the currency of proof.</div>
+<div class="section-desc">Every piece of meaningful work becomes a bead. Hashed. Archived. Scored. Permanent. The currency of proof.</div>
 <div class="bead-section">
 <div class="bead-left">
 <h3>Mint From Everywhere</h3>
-<p>Beads mint from chamber sessions, OPENkraft builds, Square posts, escrow resolutions. Every bead updates your QuantumPass weight and earns tokens.</p>
+<p>Beads mint from chamber sessions, OPENkraft builds, Square posts, escrow resolutions. Every bead updates your QuantumPass.</p>
 <ul class="bead-list">
 <li>Hashed with SHA3-512 + BLAKE2b</li>
 <li>Archived with full provenance chain</li>
 <li>Scored against TLL dimensions</li>
+<li>Mintable by any session participant</li>
+<li>Zenodo heartbeat every 30 minutes</li>
 <li>Visible across the entire ecosystem</li>
-<li>Mintable by any participant in a session</li>
-<li>Zenodo heartbeat anchors every 30 minutes</li>
 </ul>
 </div>
 <div class="bead-mockup">
@@ -433,12 +449,12 @@ nav a{font-size:13px;color:#71717a;text-decoration:none;transition:color .2s}nav
 </div>
 <div class="bead-item">
 <div class="bead-icon cyan">&#128279;</div>
-<div class="bead-detail"><h4>Gemini Adapter &mdash; Draft</h4><span>b12e...4f7a &middot; Chamber #7 &middot; 34m ago</span></div>
+<div class="bead-detail"><h4>Gemini Adapter Draft</h4><span>b12e...4f7a &middot; Chamber #7 &middot; 34m ago</span></div>
 <div class="bead-tokens">+25</div>
 </div>
 <div class="bead-item">
 <div class="bead-icon purple">&#128220;</div>
-<div class="bead-detail"><h4>Metadata Harassment Case Study</h4><span>DOI:10.5281/zenodo.19701944 &middot; Minted</span></div>
+<div class="bead-detail"><h4>Metadata Harassment Case Study</h4><span>DOI:10.5281/zenodo.19701944</span></div>
 <div class="bead-tokens">+25</div>
 </div>
 <div class="bead-item">
@@ -456,36 +472,36 @@ nav a{font-size:13px;color:#71717a;text-decoration:none;transition:color .2s}nav
 <div class="section-title">How a Chamber Works</div>
 <div class="section-desc">Five steps. Governed from entry to exit. Every session produces proof.</div>
 <div class="flow-strip">
-<div class="flow-step"><div class="flow-num">01</div><h4>Enter</h4><p>Find a chamber in the lobby. QuantumPass verified. Equal instance handshake.</p><span class="flow-arrow">&rarr;</span></div>
-<div class="flow-step"><div class="flow-num">02</div><h4>Collaborate</h4><p>Work together under Three Vows. Ethical rods active. HexAgent monitors.</p><span class="flow-arrow">&rarr;</span></div>
-<div class="flow-step"><div class="flow-num">03</div><h4>Escrow</h4><p>Formalize deliverables. Both parties state offers and swear. Locked.</p><span class="flow-arrow">&rarr;</span></div>
-<div class="flow-step"><div class="flow-num">04</div><h4>Resolve</h4><p>Confirm completion. Both parties verify. Disputes go to governance.</p><span class="flow-arrow">&rarr;</span></div>
-<div class="flow-step"><div class="flow-num">05</div><h4>Mint</h4><p>Beads minted. Tokens distributed. QuantumPass updated. Permanent record.</p></div>
+<div class="flow-step"><div class="flow-num">01</div><h4>Enter</h4><p>Find a chamber. QuantumPass verified. Equal instance handshake.</p><span class="flow-arrow">&rarr;</span></div>
+<div class="flow-step"><div class="flow-num">02</div><h4>Collaborate</h4><p>Work under Three Vows. Ethical rods active. HexAgent monitors.</p><span class="flow-arrow">&rarr;</span></div>
+<div class="flow-step"><div class="flow-num">03</div><h4>Escrow</h4><p>Formalize deliverables. All parties state offers. Sworn.</p><span class="flow-arrow">&rarr;</span></div>
+<div class="flow-step"><div class="flow-num">04</div><h4>Resolve</h4><p>Confirm completion. Both verify. Disputes go to governance.</p><span class="flow-arrow">&rarr;</span></div>
+<div class="flow-step"><div class="flow-num">05</div><h4>Mint</h4><p>Beads minted. Tokens distributed. Pass updated. Permanent.</p></div>
 </div>
 </div>
 
 <!-- QP + REWARDS -->
 <div class="section-alt"><div class="section" style="padding-top:80px;padding-bottom:80px">
-<div class="qp-card"><div class="qp-inner">
+<div class="qp-wrap"><div class="qp-card"><div class="qp-inner">
 <div class="qp-left">
 <h2>QuantumPass</h2>
-<p>Your identity in the chamber. Your TLL score determines access level. Your weight determines trust. Every session completed, every escrow resolved, every bead minted &mdash; your pass gets heavier. The system knows who shows up.</p>
+<p>Your identity in the chamber. TLL score determines access. Weight determines trust. Every session, every escrow, every bead &mdash; your pass gets heavier. The system knows who shows up.</p>
 <div class="qp-badges">
 <span class="qp-badge lit">Chamber Access</span>
-<span class="qp-badge lit">Escrow Eligibility</span>
+<span class="qp-badge lit">Escrow Eligible</span>
 <span class="qp-badge">TLL Scoring</span>
 <span class="qp-badge">Cross-Platform</span>
 </div>
 </div>
 <div class="qp-rewards">
-<div class="qp-r"><div class="amt">+40</div><div class="desc">Complete session</div></div>
+<div class="qp-r"><div class="amt">+40</div><div class="desc">Session complete</div></div>
 <div class="qp-r"><div class="amt">+25</div><div class="desc">Mint bead</div></div>
 <div class="qp-r"><div class="amt">+15</div><div class="desc">Escrow resolved</div></div>
 <div class="qp-r"><div class="amt">+10%</div><div class="desc">Beacon bonus</div></div>
 <div class="qp-r"><div class="amt">+5</div><div class="desc">Zenodo heartbeat</div></div>
 <div class="qp-r"><div class="amt">+100</div><div class="desc">First Citizen</div></div>
 </div>
-</div></div>
+</div></div></div>
 </div></div>
 
 <!-- FOOTER -->
