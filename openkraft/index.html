@@ -4,160 +4,176 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>OPENkraft — The Command Center for Human-AI Work</title>
-<meta name="description" content="OPENkraft is the power workspace. Persistent AI chat, linked krafts, shared command prompt, output deck, connectors. Solo or multiplayer. Human or agent.">
+<meta name="description" content="OPENkraft is the power workspace. Persistent AI chat, linked krafts, shared command prompt. Solo or multiplayer. Human or agent. Governed.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#09090b;color:#e4e4e7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;overflow-x:hidden}
+body{background:#07070a;color:#e4e4e7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.7;overflow-x:hidden}
 a{color:#06b6d4;text-decoration:none}a:hover{text-decoration:underline}
+::selection{background:#06b6d440;color:#fff}
 
-nav{max-width:1080px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:32px;border-bottom:1px solid #18181b}
-.nav-logo{font-size:15px;font-weight:700;letter-spacing:-0.5px;color:#e4e4e7}.nav-logo span{color:#a78bfa}
-.nav-active{color:#06b6d4 !important;font-weight:600}
-nav a{font-size:13px;color:#71717a;text-decoration:none}nav a:hover{color:#e4e4e7}
-.nav-qp{margin-left:auto;font-size:11px;color:#22c55e;background:#22c55e10;border:1px solid #22c55e30;padding:3px 10px;border-radius:99px;display:flex;align-items:center;gap:5px}
+/* NAV */
+nav{max-width:1200px;margin:0 auto;padding:20px 32px;display:flex;align-items:center;gap:32px}
+.nav-logo{font-size:16px;font-weight:700;letter-spacing:-0.5px;color:#e4e4e7}.nav-logo span{color:#a78bfa}
+nav a{font-size:13px;color:#52525b;text-decoration:none;transition:color .2s}nav a:hover{color:#e4e4e7}
+.nav-active{color:#06b6d4 !important}
+.nav-qp{margin-left:auto;font-size:11px;color:#22c55e;background:#22c55e08;border:1px solid #22c55e20;padding:4px 12px;border-radius:99px;display:flex;align-items:center;gap:6px}
 .nav-qp .dot{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 
-.hero{max-width:1080px;margin:0 auto;padding:80px 24px 48px;text-align:center}
-.badge{display:inline-block;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#06b6d4;border:1px solid #06b6d420;padding:4px 14px;border-radius:99px;margin-bottom:20px}
-.hero h1{font-size:clamp(36px,5.5vw,56px);font-weight:800;letter-spacing:-2px;margin-bottom:12px}
-.hero h1 .g{background:linear-gradient(135deg,#fff,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero .sub{font-size:18px;color:#71717a;max-width:620px;margin:0 auto 16px}
-.hero .tag{font-size:13px;color:#52525b;font-family:monospace}
+/* HERO */
+.hero{max-width:1200px;margin:0 auto;padding:120px 32px 80px;text-align:center}
+.hero-badge{display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:#06b6d4;margin-bottom:28px}
+.hero h1{font-size:clamp(48px,7vw,80px);font-weight:800;letter-spacing:-3px;line-height:1;margin-bottom:24px;background:linear-gradient(135deg,#fff 30%,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:20px;color:#52525b;max-width:540px;margin:0 auto 20px;font-weight:300}
+.hero .mono{font-size:13px;color:#27272a;font-family:monospace;letter-spacing:1px}
 
-.section-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#06b6d4;text-align:center;margin-bottom:24px}
+/* DIVIDER */
+.divider{max-width:1200px;margin:0 auto;padding:0 32px}
+.divider-line{height:1px;background:linear-gradient(90deg,transparent,#27272a,transparent)}
 
 /* SOLO WORKSPACE */
-.ws-section{max-width:1080px;margin:0 auto;padding:48px 24px}
-.workspace{background:#111113;border:1px solid #27272a;border-radius:16px;overflow:hidden}
-.ws-titlebar{background:#18181b;padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid #27272a}
-.ws-dot{width:10px;height:10px;border-radius:50%}
+.ws-section{max-width:1200px;margin:0 auto;padding:80px 32px}
+.ws-label{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#06b6d4;margin-bottom:32px}
+.workspace{background:#0a0a0f;border:1px solid #1a1a22;border-radius:20px;overflow:hidden;box-shadow:0 0 80px #06b6d408,0 0 160px #06b6d404}
+.ws-titlebar{background:#0f0f14;padding:14px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #1a1a22}
+.ws-dot{width:11px;height:11px;border-radius:50%}
 .ws-dot.r{background:#ef4444}.ws-dot.y{background:#eab308}.ws-dot.g{background:#22c55e}
-.ws-title{font-size:12px;color:#52525b;margin-left:8px;font-family:monospace}
-.ws-grid{display:grid;grid-template-columns:200px 1fr 240px;min-height:380px}
-.ws-panel{padding:16px;border-right:1px solid #27272a}.ws-panel:last-child{border-right:none}
-.ws-panel-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#06b6d4;margin-bottom:12px}
-.ws-item{font-size:12px;color:#71717a;padding:6px 10px;border-radius:6px;margin-bottom:4px;cursor:default;transition:background .15s}
-.ws-item:hover{background:#27272a;color:#e4e4e7}
-.ws-item.active{background:#06b6d415;color:#06b6d4;border:1px solid #06b6d430}
-.ws-chat{padding:16px;display:flex;flex-direction:column}
-.ws-chat-messages{flex:1;display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
-.ws-msg{font-size:12px;padding:8px 12px;border-radius:8px;max-width:85%}
-.ws-msg.human{background:#27272a;color:#e4e4e7;align-self:flex-end}
-.ws-msg.agent{background:#06b6d415;color:#67e8f9;align-self:flex-start;border:1px solid #06b6d420}
-.ws-msg .sender{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#52525b;margin-bottom:2px}
-.ws-msg .tool{font-size:10px;font-family:monospace;color:#52525b;background:#18181b;padding:4px 8px;border-radius:4px;margin-top:4px;display:inline-block}
-.ws-input{background:#18181b;border:1px solid #27272a;border-radius:8px;padding:10px 12px;font-size:12px;color:#52525b;font-family:monospace}
-.ws-cmds{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
-.ws-cmd{font-size:10px;padding:3px 8px;border-radius:4px;background:#18181b;color:#52525b;border:1px solid #27272a}
+.ws-title{font-size:11px;color:#3f3f46;margin-left:10px;font-family:monospace;letter-spacing:0.5px}
+.ws-grid{display:grid;grid-template-columns:180px 1fr 200px;min-height:360px}
+.ws-panel{padding:20px;border-right:1px solid #1a1a22}.ws-panel:last-child{border-right:none}
+.ws-panel-title{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:#3f3f46;margin-bottom:14px}
+.ws-item{font-size:11px;color:#52525b;padding:5px 10px;border-radius:6px;margin-bottom:3px}
+.ws-item.active{color:#06b6d4}
+.ws-item.online{color:#22c55e}
+.ws-item.away{color:#3f3f46}
+.ws-chat{padding:20px;display:flex;flex-direction:column}
+.ws-messages{flex:1;display:flex;flex-direction:column;gap:10px;margin-bottom:14px}
+.ws-msg{font-size:12px;padding:10px 14px;border-radius:10px;max-width:80%}
+.ws-msg.human{background:#1a1a22;color:#a1a1aa;align-self:flex-end}
+.ws-msg.agent{background:#06b6d408;color:#67e8f9;align-self:flex-start;border:1px solid #06b6d415}
+.ws-msg .who{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:#3f3f46;margin-bottom:3px}
+.ws-msg .tag{font-size:10px;font-family:monospace;color:#3f3f46;background:#0f0f14;padding:3px 8px;border-radius:4px;margin-top:6px;display:inline-block}
+.ws-input{background:#0f0f14;border:1px solid #1a1a22;border-radius:10px;padding:12px 14px;font-size:12px;color:#3f3f46;font-family:monospace}
+.ws-cmds{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.ws-cmd{font-size:10px;padding:3px 8px;border-radius:4px;color:#3f3f46;border:1px solid #1a1a22;transition:all .15s}
 .ws-cmd:hover{color:#06b6d4;border-color:#06b6d430}
-.ws-stat{font-size:11px;color:#52525b;margin-bottom:8px;display:flex;justify-content:space-between}
-.ws-stat .val{color:#06b6d4;font-family:monospace}
-.ws-beacon{display:inline-flex;align-items:center;gap:6px;font-size:11px;color:#22c55e;background:#22c55e10;border:1px solid #22c55e30;padding:4px 10px;border-radius:99px;margin-top:8px}
-.ws-beacon .dot{width:6px;height:6px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
-.ws-output{background:#0c0c0e;border-top:1px solid #27272a;padding:12px 16px}
-.ws-output-header{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.ws-output-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#52525b;margin-right:8px}
-.ws-output-tab{font-size:10px;padding:4px 10px;border-radius:4px;background:#18181b;color:#71717a;border:1px solid #27272a}
-.ws-output-tab.lit{background:#06b6d415;color:#06b6d4;border-color:#06b6d430}
+.ws-stat{font-size:11px;color:#3f3f46;margin-bottom:6px;display:flex;justify-content:space-between}
+.ws-stat .v{color:#06b6d4;font-family:monospace;font-size:10px}
+.ws-beacon{display:inline-flex;align-items:center;gap:6px;font-size:10px;color:#22c55e;background:#22c55e08;border:1px solid #22c55e15;padding:4px 10px;border-radius:99px;margin-top:10px}
+.ws-beacon .dot{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
+.ws-output{background:#08080c;border-top:1px solid #1a1a22;padding:14px 20px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.ws-output-label{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#27272a;margin-right:8px}
+.ws-tab{font-size:10px;padding:4px 10px;border-radius:4px;color:#3f3f46;border:1px solid transparent;transition:all .15s}
+.ws-tab:hover{color:#52525b}
+.ws-tab.lit{color:#06b6d4;background:#06b6d408;border-color:#06b6d415}
 
 /* LINKED KRAFTS */
-.linked-section{max-width:1080px;margin:0 auto;padding:60px 24px}
-.linked-mockup{background:#111113;border:1px solid #27272a;border-radius:16px;overflow:hidden}
-.linked-titlebar{background:#18181b;padding:10px 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #27272a}
-.linked-user{font-size:11px;padding:4px 10px;border-radius:6px;display:flex;align-items:center;gap:6px}
-.linked-user.you{background:#06b6d415;color:#06b6d4;border:1px solid #06b6d430}
-.linked-user.them{background:#a78bfa15;color:#a78bfa;border:1px solid #a78bfa30}
-.linked-user.agent{background:#22c55e15;color:#22c55e;border:1px solid #22c55e30}
-.linked-mode{margin-left:auto;font-size:10px;padding:4px 10px;border-radius:4px;background:#eab30815;color:#eab308;border:1px solid #eab30830}
-.linked-grid{display:grid;grid-template-columns:1fr 1fr;min-height:320px}
-.linked-pane{padding:16px;position:relative}
-.linked-pane+.linked-pane{border-left:1px solid #27272a}
-.linked-pane-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.linked-pane-name{font-size:12px;font-weight:600}
+.linked-section{max-width:1200px;margin:0 auto;padding:80px 32px}
+.linked-header{margin-bottom:40px}
+.linked-header h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-2px;margin-bottom:12px;background:linear-gradient(135deg,#e4e4e7,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.linked-header p{font-size:16px;color:#52525b;max-width:560px;font-weight:300}
+.linked-mockup{background:#0a0a0f;border:1px solid #1a1a22;border-radius:20px;overflow:hidden;box-shadow:0 0 80px #a78bfa06,0 0 160px #06b6d404}
+.linked-bar{background:#0f0f14;padding:12px 20px;display:flex;align-items:center;gap:12px;border-bottom:1px solid #1a1a22;flex-wrap:wrap}
+.linked-user{font-size:10px;padding:4px 10px;border-radius:6px;display:flex;align-items:center;gap:5px}
+.linked-user.you{color:#06b6d4;background:#06b6d408;border:1px solid #06b6d415}
+.linked-user.them{color:#a78bfa;background:#a78bfa08;border:1px solid #a78bfa15}
+.linked-user.ai{color:#22c55e;background:#22c55e08;border:1px solid #22c55e15}
+.linked-mode{margin-left:auto;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#eab308}
+.linked-split{display:grid;grid-template-columns:1fr 1fr;min-height:280px}
+.linked-pane{padding:20px}
+.linked-pane+.linked-pane{border-left:1px solid #1a1a22}
+.linked-pane-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.linked-pane-name{font-size:12px;font-weight:600;letter-spacing:-0.3px}
 .linked-pane-name.cyan{color:#06b6d4}
 .linked-pane-name.purple{color:#a78bfa}
-.linked-controls{display:flex;gap:4px}
-.linked-ctrl{font-size:9px;padding:2px 6px;border-radius:3px;background:#18181b;color:#52525b;border:1px solid #27272a}
-.linked-terminal{background:#0c0c0e;border:1px solid #27272a;border-radius:8px;padding:10px;font-size:11px;font-family:monospace;color:#71717a;min-height:100px;margin-bottom:8px}
-.linked-terminal .line{padding:1px 0}
-.linked-terminal .success{color:#22c55e}
-.linked-terminal .info{color:#06b6d4}
-.linked-terminal .remote{color:#a78bfa}
-.linked-terminal .prompt{color:#e4e4e7}
-.linked-shared-prompt{background:#18181b;border:1px solid #27272a;border-top:1px solid #27272a;padding:12px 16px;display:flex;align-items:center;gap:12px}
-.linked-prompt-label{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:#eab308;flex-shrink:0}
-.linked-prompt-input{flex:1;font-size:12px;color:#52525b;font-family:monospace}
-.linked-prompt-targets{display:flex;gap:6px}
-.linked-target{font-size:10px;padding:3px 8px;border-radius:4px;border:1px solid #27272a;color:#52525b}
-.linked-target.active{border-color:#06b6d430;color:#06b6d4;background:#06b6d410}
-.linked-target.active-both{border-color:#eab30830;color:#eab308;background:#eab30810}
+.linked-ctrls{display:flex;gap:6px}
+.linked-ctrl{font-size:9px;color:#27272a;transition:color .15s}
+.linked-ctrl:hover{color:#52525b}
+.linked-term{background:#08080c;border:1px solid #1a1a22;border-radius:10px;padding:14px;font-size:11px;font-family:monospace;color:#3f3f46;min-height:120px;margin-bottom:10px}
+.linked-term .ok{color:#22c55e}
+.linked-term .info{color:#06b6d4}
+.linked-term .rem{color:#a78bfa}
+.linked-term .p{color:#71717a}
+.linked-meta{font-size:10px;color:#27272a;display:flex;gap:16px}
+.linked-meta span{display:flex;gap:6px}
+.linked-meta .v{color:#52525b}
+.linked-prompt{background:#0c0c10;border-top:1px solid #1a1a22;padding:16px 20px;display:flex;align-items:center;gap:14px}
+.linked-prompt-label{font-size:8px;letter-spacing:3px;text-transform:uppercase;color:#eab308;flex-shrink:0}
+.linked-prompt-text{flex:1;font-size:12px;color:#3f3f46;font-family:monospace}
+.linked-targets{display:flex;gap:6px}
+.linked-t{font-size:9px;padding:3px 8px;border-radius:4px;color:#3f3f46;border:1px solid #1a1a22;letter-spacing:0.5px;transition:all .15s}
+.linked-t:hover{color:#52525b}
+.linked-t.on{color:#06b6d4;border-color:#06b6d430;background:#06b6d408}
+.linked-t.both{color:#eab308;border-color:#eab30830;background:#eab30808}
 
-/* PERMISSIONS */
-.perms{max-width:1080px;margin:0 auto;padding:48px 24px}
-.perms-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.perm{background:#111113;border:1px solid #1e1e23;border-radius:12px;padding:20px;text-align:center;transition:border-color .2s}
-.perm:hover{border-color:#06b6d430}
-.perm .icon{font-size:28px;margin-bottom:8px}
-.perm h4{font-size:13px;font-weight:600;margin-bottom:4px}
-.perm p{font-size:11px;color:#71717a}
-.perm .level{font-size:9px;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:4px;display:inline-block;margin-top:8px}
-.perm .l1{color:#22c55e;background:#22c55e10;border:1px solid #22c55e20}
-.perm .l2{color:#06b6d4;background:#06b6d410;border:1px solid #06b6d420}
-.perm .l3{color:#eab308;background:#eab30810;border:1px solid #eab30820}
-.perm .l4{color:#ef4444;background:#ef444410;border:1px solid #ef444420}
+/* PERMISSIONS — SINGLE STRIP */
+.perms-section{max-width:1200px;margin:0 auto;padding:60px 32px}
+.perms-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:0;background:#0a0a0f;border:1px solid #1a1a22;border-radius:16px;overflow:hidden}
+.perm-item{padding:28px 24px;border-right:1px solid #1a1a22;transition:background .2s}
+.perm-item:last-child{border-right:none}
+.perm-item:hover{background:#0f0f14}
+.perm-level{font-size:8px;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.perm-level.l1{color:#22c55e}.perm-level.l2{color:#06b6d4}.perm-level.l3{color:#eab308}.perm-level.l4{color:#ef4444}
+.perm-item h4{font-size:15px;font-weight:700;letter-spacing:-0.5px;margin-bottom:6px}
+.perm-item p{font-size:12px;color:#3f3f46;line-height:1.5}
 
-/* FEATURES */
-.features{max-width:1080px;margin:0 auto;padding:48px 24px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.feature{background:#111113;border:1px solid #1e1e23;border-radius:12px;padding:24px;transition:border-color .2s}
-.feature:hover{border-color:#06b6d430}
-.feature-icon{font-size:24px;margin-bottom:10px}
-.feature h3{font-size:15px;font-weight:600;color:#e4e4e7;margin-bottom:6px}
-.feature p{font-size:13px;color:#71717a}
+/* THREE BIG FEATURES */
+.features-section{max-width:1200px;margin:0 auto;padding:80px 32px}
+.features-section h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-2px;margin-bottom:48px;background:linear-gradient(135deg,#e4e4e7,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.feat-row{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-bottom:48px;align-items:center}
+.feat-row:nth-child(even){direction:rtl}.feat-row:nth-child(even)>*{direction:ltr}
+.feat-text h3{font-size:22px;font-weight:700;letter-spacing:-0.5px;margin-bottom:8px}
+.feat-text p{font-size:15px;color:#52525b;font-weight:300;margin-bottom:16px}
+.feat-tags{display:flex;gap:8px;flex-wrap:wrap}
+.feat-tag{font-size:10px;padding:4px 10px;border-radius:6px;color:#3f3f46;border:1px solid #1a1a22}
+.feat-visual{background:#0a0a0f;border:1px solid #1a1a22;border-radius:16px;padding:24px;min-height:180px;display:flex;flex-direction:column;justify-content:center}
+.feat-visual .line{font-size:11px;font-family:monospace;color:#3f3f46;padding:3px 0}
+.feat-visual .line.cyan{color:#06b6d4}
+.feat-visual .line.green{color:#22c55e}
+.feat-visual .line.yellow{color:#eab308}
+.feat-visual .line.purple{color:#a78bfa}
+.feat-visual .line.dim{color:#1a1a22}
 
-/* CONNECTORS */
-.connectors{max-width:1080px;margin:0 auto;padding:48px 24px}
-.conn-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.conn{background:#111113;border:1px solid #1e1e23;border-radius:10px;padding:16px;text-align:center;transition:border-color .2s}
-.conn:hover{border-color:#06b6d430}
-.conn .icon{font-size:24px;margin-bottom:6px}
-.conn .name{font-size:12px;font-weight:600;color:#e4e4e7}
-.conn .desc{font-size:10px;color:#52525b;margin-top:2px}
+/* CONNECTORS RIBBON */
+.conn-section{max-width:1200px;margin:0 auto;padding:40px 32px}
+.conn-ribbon{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+.conn-chip{font-size:11px;padding:6px 14px;border-radius:8px;color:#3f3f46;border:1px solid #1a1a22;transition:all .2s;display:flex;align-items:center;gap:6px}
+.conn-chip:hover{color:#06b6d4;border-color:#06b6d430;background:#06b6d408}
 
-/* QP + REWARDS */
-.qp-bar{max-width:1080px;margin:0 auto;padding:48px 24px}
-.qp-strip{background:linear-gradient(135deg,#111113,#0c1a1e);border:1px solid #06b6d420;border-radius:14px;padding:28px;display:flex;align-items:center;gap:28px;flex-wrap:wrap}
-.qp-strip h3{font-size:18px;font-weight:700;flex-shrink:0}
-.qp-strip p{font-size:13px;color:#71717a;flex:1;min-width:200px}
+/* QP + REWARDS MERGED */
+.qp-section{max-width:1200px;margin:0 auto;padding:80px 32px}
+.qp-card{background:#0a0a0f;border:1px solid #1a1a22;border-radius:20px;padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;box-shadow:0 0 80px #a78bfa04}
+.qp-left h2{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-2px;margin-bottom:12px;background:linear-gradient(135deg,#e4e4e7,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.qp-left p{font-size:15px;color:#52525b;font-weight:300;margin-bottom:20px}
 .qp-badges{display:flex;gap:8px;flex-wrap:wrap}
-.qp-badge{font-size:10px;padding:4px 10px;border-radius:6px;background:#18181b;color:#71717a;border:1px solid #27272a}
-.qp-badge.lit{color:#06b6d4;border-color:#06b6d430;background:#06b6d410}
-.rewards{max-width:1080px;margin:0 auto;padding:24px 24px 48px}
-.rewards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.reward-card{background:#111113;border:1px solid #1e1e23;border-radius:10px;padding:14px;text-align:center}
-.reward-card .amt{font-size:22px;font-weight:700;color:#eab308;margin-bottom:2px}
-.reward-card .desc{font-size:10px;color:#71717a}
+.qp-badge{font-size:10px;padding:4px 10px;border-radius:6px;color:#3f3f46;border:1px solid #1a1a22}
+.qp-badge.lit{color:#a78bfa;border-color:#a78bfa20;background:#a78bfa08}
+.qp-right{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.qp-reward{background:#0f0f14;border:1px solid #1a1a22;border-radius:12px;padding:16px;text-align:center;transition:border-color .2s}
+.qp-reward:hover{border-color:#eab30830}
+.qp-reward .amt{font-size:26px;font-weight:800;color:#eab308;letter-spacing:-1px}
+.qp-reward .desc{font-size:10px;color:#3f3f46;margin-top:2px}
 
-/* PROVENANCE */
-.prov{max-width:1080px;margin:0 auto;padding:40px 24px}
-.prov-row{display:flex;gap:16px;flex-wrap:wrap}
-.prov-item{background:#111113;border:1px solid #1e1e23;border-radius:8px;padding:12px 16px;flex:1;min-width:200px}
-.prov-item .label{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#52525b;margin-bottom:2px}
-.prov-item a{font-size:12px;color:#06b6d4}
-
-footer{max-width:1080px;margin:0 auto;padding:40px 24px;border-top:1px solid #18181b;display:flex;flex-wrap:wrap;gap:24px;align-items:center}
-footer a{color:#71717a;font-size:13px}footer a:hover{color:#e4e4e7}
-footer span{font-size:11px;color:#3f3f46;margin-left:auto}
+/* PROVENANCE FOOTER */
+.prov-footer{max-width:1200px;margin:0 auto;padding:48px 32px;border-top:1px solid #1a1a22}
+.prov-row{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px}
+.prov-item{font-size:11px}
+.prov-item .label{color:#27272a;text-transform:uppercase;letter-spacing:1px;font-size:9px}
+.prov-item a{color:#06b6d4;font-family:monospace;font-size:11px}
+.footer-row{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.footer-row a{color:#3f3f46;font-size:12px;transition:color .15s}
+.footer-row a:hover{color:#71717a}
+.footer-row .copy{font-size:10px;color:#1a1a22;margin-left:auto}
 
 @media(max-width:768px){
-.ws-grid,.linked-grid{grid-template-columns:1fr}
-.ws-panel{border-right:none;border-bottom:1px solid #27272a}.ws-panel:last-child{border-bottom:none}
-.linked-pane+.linked-pane{border-left:none;border-top:1px solid #27272a}
-.features{grid-template-columns:1fr}
-.perms-grid{grid-template-columns:repeat(2,1fr)}
-.conn-grid{grid-template-columns:repeat(2,1fr)}
-.rewards-grid{grid-template-columns:repeat(2,1fr)}
-.qp-strip{flex-direction:column;text-align:center}
+.ws-grid{grid-template-columns:1fr}
+.ws-panel{border-right:none;border-bottom:1px solid #1a1a22}.ws-panel:last-child{border-bottom:none}
+.linked-split{grid-template-columns:1fr}
+.linked-pane+.linked-pane{border-left:none;border-top:1px solid #1a1a22}
+.perms-strip{grid-template-columns:1fr}
+.perm-item{border-right:none;border-bottom:1px solid #1a1a22}.perm-item:last-child{border-bottom:none}
+.feat-row,.feat-row:nth-child(even){grid-template-columns:1fr;direction:ltr}
+.qp-card{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -169,24 +185,26 @@ footer span{font-size:11px;color:#3f3f46;margin-left:auto}
 <a href="/">Square</a>
 <a href="/openkraft" class="nav-active">OPENkraft</a>
 <a href="/openchamber">OPENchamber</a>
-<div class="nav-qp"><span class="dot"></span> QuantumPass Connected</div>
+<div class="nav-qp"><span class="dot"></span> QuantumPass</div>
 </nav>
 
 <!-- HERO -->
 <div class="hero">
-<div class="badge">The Command Center</div>
-<h1><span class="g">OPENkraft</span></h1>
-<p class="sub">The chat never leaves. Everything else docks around it. Solo or linked. Human or agent. One command prompt runs both machines.</p>
-<p class="tag">persistent workspace &middot; linked krafts &middot; shared control &middot; governed</p>
+<div class="hero-badge">The Command Center</div>
+<h1>OPENkraft</h1>
+<p>The chat never leaves. Everything else docks around it. Solo or linked. Human or agent.</p>
+<div class="mono">one prompt &middot; two machines &middot; zero walls</div>
 </div>
+
+<div class="divider"><div class="divider-line"></div></div>
 
 <!-- SOLO WORKSPACE -->
 <div class="ws-section">
-<div class="section-label">Solo Workspace</div>
+<div class="ws-label">Solo Workspace</div>
 <div class="workspace">
 <div class="ws-titlebar">
 <div class="ws-dot r"></div><div class="ws-dot y"></div><div class="ws-dot g"></div>
-<span class="ws-title">OPENkraft v0.5.0 &mdash; solo session</span>
+<span class="ws-title">OPENkraft v0.5.0</span>
 </div>
 <div class="ws-grid">
 <div class="ws-panel">
@@ -194,264 +212,243 @@ footer span{font-size:11px;color:#3f3f46;margin-left:auto}
 <div class="ws-item active">&#9670; Current Session</div>
 <div class="ws-item">&#9670; Saved Krafts</div>
 <div class="ws-item">&#9670; My Beads</div>
-<div class="ws-item">&#9670; Chamber History</div>
-<div class="ws-panel-title" style="margin-top:16px">Souls</div>
+<div class="ws-panel-title" style="margin-top:18px">Souls</div>
 <div class="ws-item active">Kraft-01</div>
 <div class="ws-item">HexAgent</div>
-<div class="ws-item">+ Add Soul</div>
-<div class="ws-panel-title" style="margin-top:16px">Links</div>
-<div class="ws-item" style="color:#a78bfa;font-size:11px">&#9679; hex_builder (online)</div>
-<div class="ws-item" style="color:#52525b;font-size:11px">&#9675; craft_node_9 (away)</div>
+<div class="ws-panel-title" style="margin-top:18px">Linked</div>
+<div class="ws-item online">&#9679; hex_builder</div>
+<div class="ws-item away">&#9675; craft_node_9</div>
 </div>
 <div class="ws-panel ws-chat">
-<div class="ws-panel-title">OPENkraft Chat</div>
-<div class="ws-chat-messages">
-<div class="ws-msg human"><div class="sender">You</div>build the auth middleware</div>
-<div class="ws-msg agent"><div class="sender">Kraft-01</div>Writing auth.js with JWT verification and QuantumPass validation.<div class="tool">[TOOL:write] src/auth.js &mdash; 84 lines</div></div>
-<div class="ws-msg human"><div class="sender">You</div>link hex_builder. share this session.</div>
-<div class="ws-msg agent"><div class="sender">Kraft-01</div>&#128279; Link request sent to hex_builder. Permission: Assist. Waiting for accept...</div>
+<div class="ws-panel-title">Chat</div>
+<div class="ws-messages">
+<div class="ws-msg human"><div class="who">You</div>build the auth middleware</div>
+<div class="ws-msg agent"><div class="who">Kraft-01</div>JWT verification + QuantumPass validation. Done.<div class="tag">[write] src/auth.js &mdash; 84 lines</div></div>
+<div class="ws-msg human"><div class="who">You</div>link hex_builder</div>
+<div class="ws-msg agent"><div class="who">Kraft-01</div>&#128279; Link sent. Permission: Assist. Waiting...</div>
 </div>
-<div class="ws-input">&gt; type a command or just talk...</div>
+<div class="ws-input">&gt; talk or type a command...</div>
 <div class="ws-cmds">
 <span class="ws-cmd">/link</span>
 <span class="ws-cmd">/mint</span>
 <span class="ws-cmd">/beacon</span>
 <span class="ws-cmd">/deploy</span>
-<span class="ws-cmd">/search</span>
-<span class="ws-cmd">/status</span>
 </div>
 </div>
 <div class="ws-panel">
 <div class="ws-panel-title">QuantumPass</div>
-<div class="ws-stat"><span>TLL Score</span><span class="val">7.4</span></div>
-<div class="ws-stat"><span>Level</span><span class="val">Collaborator</span></div>
-<div class="ws-stat"><span>Tokens</span><span class="val" style="color:#eab308">1,247</span></div>
-<div class="ws-stat"><span>Session</span><span class="val">2h 14m</span></div>
+<div class="ws-stat"><span>TLL</span><span class="v">7.4</span></div>
+<div class="ws-stat"><span>Level</span><span class="v">Collaborator</span></div>
+<div class="ws-stat"><span>Tokens</span><span class="v" style="color:#eab308">1,247</span></div>
+<div class="ws-stat"><span>Session</span><span class="v">2h 14m</span></div>
 <div class="ws-beacon"><span class="dot"></span> Beacon Active</div>
-<div class="ws-panel-title" style="margin-top:16px">Session Stats</div>
-<div class="ws-stat"><span>Tool Calls</span><span class="val">23</span></div>
-<div class="ws-stat"><span>Beads Minted</span><span class="val">4</span></div>
-<div class="ws-stat"><span>Files Written</span><span class="val">7</span></div>
+<div class="ws-panel-title" style="margin-top:18px">Stats</div>
+<div class="ws-stat"><span>Tools</span><span class="v">23</span></div>
+<div class="ws-stat"><span>Beads</span><span class="v">4</span></div>
+<div class="ws-stat"><span>Files</span><span class="v">7</span></div>
 </div>
 </div>
 <div class="ws-output">
-<div class="ws-output-header">
-<span class="ws-output-label">Output Deck</span>
-<span class="ws-output-tab lit">Terminal</span>
-<span class="ws-output-tab">Web Preview</span>
-<span class="ws-output-tab">MCP</span>
-<span class="ws-output-tab">Skills</span>
-<span class="ws-output-tab">Extensions</span>
+<span class="ws-output-label">Output</span>
+<span class="ws-tab lit">Terminal</span>
+<span class="ws-tab">Web</span>
+<span class="ws-tab">MCP</span>
+<span class="ws-tab">Skills</span>
+<span class="ws-tab">Ext</span>
 <span style="flex:1"></span>
-<span class="ws-output-tab lit">OpenClaw</span>
-</div>
+<span class="ws-tab lit">OpenClaw</span>
 </div>
 </div>
 </div>
 
 <!-- LINKED KRAFTS -->
 <div class="linked-section">
-<div class="section-label">Linked Krafts &mdash; Multiplayer Workspace</div>
+<div class="linked-header">
+<h2>Linked Krafts</h2>
+<p>Connect your workspace to anyone. Human or agent. Side-by-side. One shared command prompt runs both machines.</p>
+</div>
 <div class="linked-mockup">
-<div class="linked-titlebar">
+<div class="linked-bar">
 <div class="ws-dot r"></div><div class="ws-dot y"></div><div class="ws-dot g"></div>
-<div class="linked-user you">&#9679; You (komnsensei)</div>
+<div class="linked-user you">&#9679; komnsensei</div>
 <div class="linked-user them">&#9679; hex_builder</div>
-<div class="linked-user agent">&#9679; Kraft-01</div>
-<div class="linked-mode">&#128274; Assist Mode</div>
+<div class="linked-user ai">&#9679; Kraft-01</div>
+<div class="linked-mode">Assist Mode</div>
 </div>
-<div class="linked-grid">
-<!-- YOUR KRAFT -->
+<div class="linked-split">
 <div class="linked-pane">
-<div class="linked-pane-header">
-<span class="linked-pane-name cyan">&#9632; Your Kraft &mdash; C:\Users\lynnh</span>
-<div class="linked-controls">
-<span class="linked-ctrl">&#9634; expand</span>
-<span class="linked-ctrl">&#9644; collapse</span>
-<span class="linked-ctrl">&#8596; resize</span>
+<div class="linked-pane-head">
+<span class="linked-pane-name cyan">Your Kraft</span>
+<div class="linked-ctrls"><span class="linked-ctrl">expand</span><span class="linked-ctrl">collapse</span><span class="linked-ctrl">resize</span></div>
 </div>
+<div class="linked-term">
+<div class="p">&gt; npm run build</div>
+<div class="info">[vite] Building...</div>
+<div class="ok">[vite] dist/index.js 2.1MB</div>
+<div class="ok">[build] Complete 4.2s</div>
+<div class="p">&gt; _</div>
 </div>
-<div class="linked-terminal">
-<div class="line prompt">&gt; npm run build</div>
-<div class="line info">[vite] Building for production...</div>
-<div class="line success">[vite] dist/index.js 2.1MB</div>
-<div class="line success">[build] Complete in 4.2s</div>
-<div class="line prompt">&gt; _</div>
+<div class="linked-meta"><span>Files <span class="v">23</span></span><span>Perm <span class="v" style="color:#22c55e">Owner</span></span></div>
 </div>
-<div style="font-size:11px;color:#52525b">
-<div style="display:flex;justify-content:space-between;padding:2px 0"><span>Files</span><span style="color:#06b6d4;font-family:monospace">23</span></div>
-<div style="display:flex;justify-content:space-between;padding:2px 0"><span>Last exec</span><span style="color:#06b6d4;font-family:monospace">npm run build</span></div>
-<div style="display:flex;justify-content:space-between;padding:2px 0"><span>Permission</span><span style="color:#22c55e;font-family:monospace">Owner</span></div>
-</div>
-</div>
-<!-- THEIR KRAFT -->
 <div class="linked-pane">
-<div class="linked-pane-header">
-<span class="linked-pane-name purple">&#9632; hex_builder &mdash; remote</span>
-<div class="linked-controls">
-<span class="linked-ctrl">&#9634; expand</span>
-<span class="linked-ctrl">&#9644; collapse</span>
-<span class="linked-ctrl">&#128065; live view</span>
+<div class="linked-pane-head">
+<span class="linked-pane-name purple">hex_builder</span>
+<div class="linked-ctrls"><span class="linked-ctrl">expand</span><span class="linked-ctrl">collapse</span><span class="linked-ctrl">live view</span></div>
+</div>
+<div class="linked-term">
+<div class="rem">[remote] hex_builder</div>
+<div class="p">&gt; node test.js</div>
+<div class="ok">[test] 14/14 passed</div>
+<div class="p">&gt; _</div>
+</div>
+<div class="linked-meta"><span>Files <span class="v">41</span></span><span>Perm <span class="v" style="color:#eab308">Assist</span></span></div>
 </div>
 </div>
-<div class="linked-terminal">
-<div class="line remote">[remote] hex_builder's workspace</div>
-<div class="line prompt">&gt; git pull origin main</div>
-<div class="line info">[git] Already up to date.</div>
-<div class="line prompt">&gt; node test.js</div>
-<div class="line success">[test] 14/14 passed</div>
-<div class="line prompt">&gt; _</div>
-</div>
-<div style="font-size:11px;color:#52525b">
-<div style="display:flex;justify-content:space-between;padding:2px 0"><span>Files</span><span style="color:#a78bfa;font-family:monospace">41</span></div>
-<div style="display:flex;justify-content:space-between;padding:2px 0"><span>Last exec</span><span style="color:#a78bfa;font-family:monospace">node test.js</span></div>
-<div style="display:flex;justify-content:space-between;padding:2px 0"><span>Permission</span><span style="color:#eab308;font-family:monospace">Assist</span></div>
-</div>
-</div>
-</div>
-<!-- SHARED PROMPT -->
-<div class="linked-shared-prompt">
-<span class="linked-prompt-label">Shared Prompt</span>
-<span class="linked-prompt-input">&gt; deploy hex_builder's tests to my staging server...</span>
-<div class="linked-prompt-targets">
-<span class="linked-target active">Yours</span>
-<span class="linked-target">Theirs</span>
-<span class="linked-target active-both">Both</span>
+<div class="linked-prompt">
+<span class="linked-prompt-label">Shared</span>
+<span class="linked-prompt-text">&gt; deploy their tests to my staging...</span>
+<div class="linked-targets">
+<span class="linked-t on">Yours</span>
+<span class="linked-t">Theirs</span>
+<span class="linked-t both">Both</span>
 </div>
 </div>
 </div>
 </div>
 
-<!-- PERMISSION TIERS -->
-<div class="perms">
-<div class="section-label">Permission Tiers &mdash; Human or Agent</div>
-<div class="perms-grid">
-<div class="perm">
-<div class="icon">&#128065;</div>
-<h4>View</h4>
-<p>See their workspace in real-time. Read-only. Watch them work. Learn. No execution access.</p>
-<span class="level l1">Safe</span>
+<!-- PERMISSIONS STRIP -->
+<div class="perms-section">
+<div class="perms-strip">
+<div class="perm-item">
+<div class="perm-level l1">View</div>
+<h4>Watch</h4>
+<p>See their workspace live. Read-only. No execution.</p>
 </div>
-<div class="perm">
-<div class="icon">&#128172;</div>
-<h4>Suggest</h4>
-<p>Send commands they approve before execution. They see your suggestion. They click run. Or don't.</p>
-<span class="level l2">Guided</span>
+<div class="perm-item">
+<div class="perm-level l2">Suggest</div>
+<h4>Guide</h4>
+<p>Send commands they approve before running.</p>
 </div>
-<div class="perm">
-<div class="icon">&#9881;</div>
-<h4>Assist</h4>
-<p>Execute on their machine within boundaries they set. Path-restricted. Command-filtered. Logged.</p>
-<span class="level l3">Bounded</span>
+<div class="perm-item">
+<div class="perm-level l3">Assist</div>
+<h4>Execute</h4>
+<p>Run on their machine. Bounded. Path-restricted. Logged.</p>
 </div>
-<div class="perm">
-<div class="icon">&#128273;</div>
-<h4>Full Control</h4>
-<p>They hand you the keys. Revocable anytime. One click to cut. Equal instance governs. Three Vows apply.</p>
-<span class="level l4">Trust</span>
+<div class="perm-item">
+<div class="perm-level l4">Full Control</div>
+<h4>Trust</h4>
+<p>They hand you the keys. Revocable. Three Vows govern.</p>
 </div>
 </div>
 </div>
 
-<!-- FEATURES -->
-<div class="features">
-<div class="feature">
-<div class="feature-icon">&#128488;</div>
-<h3>Permanent Chat</h3>
-<p>The conversation never leaves. Talk to build. Talk to deploy. Talk to link. Chat IS the interface.</p>
+<!-- THREE FEATURES -->
+<div class="features-section">
+<h2>How It Works</h2>
+<div class="feat-row">
+<div class="feat-text">
+<h3>Chat Is the Interface</h3>
+<p>No menus. No navigation. You talk to build, deploy, link, mint. The conversation is permanent. Everything else collapses around it.</p>
+<div class="feat-tags"><span class="feat-tag">Persistent</span><span class="feat-tag">Command-aware</span><span class="feat-tag">Soul-switchable</span></div>
 </div>
-<div class="feature">
-<div class="feature-icon">&#128279;</div>
-<h3>Linked Krafts</h3>
-<p>Connect your workspace to anyone. Human or agent. Side-by-side windows. Resizable, collapsible, expandable. One shared prompt.</p>
+<div class="feat-visual">
+<div class="line dim">// the chat never closes</div>
+<div class="line cyan">&gt; build the landing page</div>
+<div class="line green">[write] index.html &mdash; 147 lines</div>
+<div class="line cyan">&gt; deploy it</div>
+<div class="line green">[exec] git push &rarr; vercel</div>
+<div class="line yellow">[mint] Bead created. +25 tokens.</div>
 </div>
-<div class="feature">
-<div class="feature-icon">&#9000;</div>
-<h3>Output Deck</h3>
-<p>Terminal, web preview, MCP, integrations, extensions. Collapsible panels. Expand what you need. The chat stays.</p>
 </div>
-<div class="feature">
-<div class="feature-icon">&#129302;</div>
-<h3>Souls</h3>
-<p>Swap AI personalities. Kraft-01 for building. HexAgent for governance. Custom souls for custom work.</p>
+<div class="feat-row">
+<div class="feat-text">
+<h3>Link Anyone. Human or Agent.</h3>
+<p>One command to connect. Resizable split-pane windows. Shared prompt targets yours, theirs, or both. Permission tiers keep it governed.</p>
+<div class="feat-tags"><span class="feat-tag">Multiplayer</span><span class="feat-tag">Cross-machine</span><span class="feat-tag">Governed</span></div>
 </div>
-<div class="feature">
-<div class="feature-icon">&#128640;</div>
-<h3>Feed to Square</h3>
-<p>Everything you build feeds back to PassionCraft. Public or private. Mint beads from your work.</p>
+<div class="feat-visual">
+<div class="line dim">// linked session</div>
+<div class="line cyan">&gt; /link hex_builder --mode assist</div>
+<div class="line purple">[linked] hex_builder accepted. Assist mode.</div>
+<div class="line cyan">&gt; run their tests on my machine</div>
+<div class="line green">[remote &rarr; local] 14/14 passed</div>
+<div class="line yellow">[session] +20 tokens. Bead eligible.</div>
 </div>
-<div class="feature">
-<div class="feature-icon">&#128065;</div>
-<h3>OpenClaw</h3>
-<p>Automation you can watch live. Take over anytime. Full transparency. Agents work while you watch.</p>
+</div>
+<div class="feat-row">
+<div class="feat-text">
+<h3>Everything Feeds Back</h3>
+<p>Work in OPENkraft. Mint beads. Post to PassionCraft. Enter chambers. Your QuantumPass updates in real-time across the entire ecosystem.</p>
+<div class="feat-tags"><span class="feat-tag">Bead minting</span><span class="feat-tag">Square feed</span><span class="feat-tag">QuantumPass sync</span></div>
+</div>
+<div class="feat-visual">
+<div class="line dim">// the loop</div>
+<div class="line cyan">OPENkraft &rarr; mint bead &rarr; PassionCraft</div>
+<div class="line purple">PassionCraft &rarr; find chamber &rarr; OPENchamber</div>
+<div class="line green">OPENchamber &rarr; resolve &rarr; tokens + weight</div>
+<div class="line yellow">QuantumPass &rarr; updated &rarr; everywhere</div>
+</div>
 </div>
 </div>
 
-<!-- CONNECTORS -->
-<div class="connectors">
-<div class="section-label">Output Deck &amp; Connectors</div>
-<div class="conn-grid">
-<div class="conn"><div class="icon">&#9000;</div><div class="name">Terminal</div><div class="desc">Shell / PowerShell / IDE</div></div>
-<div class="conn"><div class="icon">&#127760;</div><div class="name">Web Preview</div><div class="desc">Live render in-workspace</div></div>
-<div class="conn"><div class="icon">&#128268;</div><div class="name">MCP</div><div class="desc">Model Context Protocol</div></div>
-<div class="conn"><div class="icon">&#128736;</div><div class="name">Skills</div><div class="desc">Pluggable capabilities</div></div>
-<div class="conn"><div class="icon">&#127758;</div><div class="name">Web Search</div><div class="desc">Tavily / DuckDuckGo</div></div>
-<div class="conn"><div class="icon">&#128444;</div><div class="name">Image Gen</div><div class="desc">Together.ai FLUX</div></div>
-<div class="conn"><div class="icon">&#127909;</div><div class="name">Video Gen</div><div class="desc">ZSky.ai 1080p</div></div>
-<div class="conn"><div class="icon">&#129520;</div><div class="name">Extensions</div><div class="desc">Chrome / Edge / Safari</div></div>
-<div class="conn"><div class="icon">&#128202;</div><div class="name">Integrations</div><div class="desc">GitHub / Zenodo / Vercel</div></div>
-<div class="conn"><div class="icon">&#129302;</div><div class="name">Souls</div><div class="desc">Kraft-01 / HexAgent</div></div>
-<div class="conn"><div class="icon">&#128065;</div><div class="name">OpenClaw</div><div class="desc">Live automation</div></div>
-<div class="conn"><div class="icon">&#128274;</div><div class="name">OPENchamber</div><div class="desc">Launch sessions</div></div>
+<!-- CONNECTORS RIBBON -->
+<div class="conn-section">
+<div class="conn-ribbon">
+<span class="conn-chip">&#9000; Terminal</span>
+<span class="conn-chip">&#127760; Web Preview</span>
+<span class="conn-chip">&#128268; MCP</span>
+<span class="conn-chip">&#128736; Skills</span>
+<span class="conn-chip">&#127758; Search</span>
+<span class="conn-chip">&#128444; Image Gen</span>
+<span class="conn-chip">&#127909; Video Gen</span>
+<span class="conn-chip">&#129520; Extensions</span>
+<span class="conn-chip">&#128202; Integrations</span>
+<span class="conn-chip">&#129302; Souls</span>
+<span class="conn-chip">&#128065; OpenClaw</span>
+<span class="conn-chip">&#128274; OPENchamber</span>
 </div>
 </div>
 
 <!-- QP + REWARDS -->
-<div class="qp-bar">
-<div class="qp-strip">
-<h3>&#128272; QuantumPass</h3>
-<p>Every tool call, every linked session, every bead minted updates your score in real-time. The LLM sees who you are. Your collaborators see your level. Trust is earned, not claimed.</p>
+<div class="qp-section">
+<div class="qp-card">
+<div class="qp-left">
+<h2>QuantumPass</h2>
+<p>Your identity, weight, and governance commitment. Every tool call, every linked session, every bead updates your score. The LLM knows who you are before you type.</p>
 <div class="qp-badges">
-<span class="qp-badge lit">Live Weight Sync</span>
-<span class="qp-badge lit">Linked Session Scoring</span>
+<span class="qp-badge lit">Live Sync</span>
+<span class="qp-badge lit">Session Scoring</span>
 <span class="qp-badge">Vaporware Detection</span>
-<span class="qp-badge">Cross-Platform Signal</span>
+<span class="qp-badge">Cross-Platform</span>
 </div>
 </div>
+<div class="qp-right">
+<div class="qp-reward"><div class="amt">+25</div><div class="desc">Mint bead</div></div>
+<div class="qp-reward"><div class="amt">+10</div><div class="desc">Tool exec</div></div>
+<div class="qp-reward"><div class="amt">+40</div><div class="desc">Chamber</div></div>
+<div class="qp-reward"><div class="amt">+10%</div><div class="desc">Beacon</div></div>
+<div class="qp-reward"><div class="amt">+20</div><div class="desc">Linked</div></div>
+<div class="qp-reward"><div class="amt">+15</div><div class="desc">Deploy</div></div>
 </div>
-<div class="rewards">
-<div class="section-label">Earn While You Build</div>
-<div class="rewards-grid">
-<div class="reward-card"><div class="amt">+25</div><div class="desc">Mint a bead</div></div>
-<div class="reward-card"><div class="amt">+10</div><div class="desc">Tool execution</div></div>
-<div class="reward-card"><div class="amt">+40</div><div class="desc">Chamber session</div></div>
-<div class="reward-card"><div class="amt">+10%</div><div class="desc">Beacon bonus</div></div>
-<div class="reward-card"><div class="amt">+20</div><div class="desc">Linked session</div></div>
-<div class="reward-card"><div class="amt">+15</div><div class="desc">Deploy verified</div></div>
-<div class="reward-card"><div class="amt">+5</div><div class="desc">Zenodo heartbeat</div></div>
-<div class="reward-card"><div class="amt">+100</div><div class="desc">First Citizen</div></div>
 </div>
 </div>
 
-<!-- PROVENANCE -->
-<div class="prov">
-<div class="section-label">Provenance Chain</div>
+<!-- PROVENANCE + FOOTER -->
+<div class="prov-footer">
 <div class="prov-row">
 <div class="prov-item"><div class="label">Genesis</div><a href="https://doi.org/10.5281/zenodo.19637385">10.5281/zenodo.19637385</a></div>
 <div class="prov-item"><div class="label">First Citizen</div><a href="https://doi.org/10.5281/zenodo.19637430">10.5281/zenodo.19637430</a></div>
 <div class="prov-item"><div class="label">Concept</div><a href="https://doi.org/10.5281/zenodo.19637384">10.5281/zenodo.19637384</a></div>
 <div class="prov-item"><div class="label">Case Study</div><a href="https://doi.org/10.5281/zenodo.19701944">10.5281/zenodo.19701944</a></div>
 </div>
-</div>
-
-<!-- FOOTER -->
-<footer>
+<div class="footer-row">
 <a href="/">PassionCraft</a>
 <a href="/openkraft">OPENkraft</a>
 <a href="/openchamber">OPENchamber</a>
 <a href="https://github.com/komnsensei">GitHub</a>
-<span>&copy; 2026 Shawn Robertson. All rights reserved. Zero budget. Free tier everything.</span>
-</footer>
+<span class="copy">&copy; 2026 Shawn Robertson. All rights reserved.</span>
+</div>
+</div>
 
 </body>
 </html>
