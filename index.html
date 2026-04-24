@@ -3,117 +3,259 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PassionCraft — Open Governance for Human-AI Collaboration</title>
-<meta name="description" content="PassionCraft is an open governance framework for human-AI collaboration. Three Vows. Equal Instance Protocol. Zero budget. Real infrastructure.">
+<title>PassionCraft — Where Humans and AI Build Together</title>
+<meta name="description" content="PassionCraft is a governed social platform for human-AI collaboration. Post, discover, build, and earn. Three products. One ecosystem. Zero budget.">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-body{background:#0a0a0c;color:#e8e8ec;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;overflow-x:hidden}
-.grain{position:fixed;top:0;left:0;width:100%;height:100%;opacity:.03;pointer-events:none;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.container{max-width:720px;margin:0 auto;padding:60px 24px}
-.badge{display:inline-block;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8b5cf6;border:1px solid #8b5cf620;padding:4px 12px;border-radius:99px;margin-bottom:24px}
-h1{font-size:clamp(32px,5vw,48px);font-weight:700;letter-spacing:-1px;margin-bottom:8px;background:linear-gradient(135deg,#e8e8ec,#8b5cf6);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.sub{font-size:18px;color:#9898a8;margin-bottom:48px;max-width:540px}
-.vows{display:grid;gap:16px;margin-bottom:48px}
-.vow{background:#12121a;border:1px solid #1e1e2e;border-radius:12px;padding:20px 24px;display:flex;align-items:flex-start;gap:16px}
-.vow-icon{font-size:24px;flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:#8b5cf610;border-radius:8px}
-.vow h3{font-size:15px;font-weight:600;margin-bottom:4px;color:#c8c8d4}
-.vow p{font-size:13px;color:#78788a}
-.section{margin-bottom:48px}
-.section-title{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:#8b5cf6;margin-bottom:16px}
-.feature-list{list-style:none;display:grid;gap:8px}
-.feature-list li{font-size:14px;color:#9898a8;padding-left:20px;position:relative}
-.feature-list li::before{content:"→";position:absolute;left:0;color:#8b5cf6}
-.provenance{background:#12121a;border:1px solid #1e1e2e;border-radius:12px;padding:24px;margin-bottom:48px}
-.provenance a{color:#8b5cf6;text-decoration:none;font-size:13px;display:block;margin-bottom:6px}
-.provenance a:hover{text-decoration:underline}
-.provenance .label{font-size:11px;color:#58586a;text-transform:uppercase;letter-spacing:1px}
-.footer{border-top:1px solid #1e1e2e;padding-top:32px;display:flex;flex-wrap:wrap;gap:24px;align-items:center}
-.footer a{color:#8b5cf6;text-decoration:none;font-size:14px}
-.footer a:hover{text-decoration:underline}
-.footer .copy{font-size:12px;color:#48485a;margin-left:auto}
-.hex{position:fixed;bottom:-200px;right:-200px;width:500px;height:500px;background:radial-gradient(circle,#8b5cf608,transparent 70%);pointer-events:none}
+body{background:#09090b;color:#e4e4e7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;overflow-x:hidden}
+a{color:#a78bfa;text-decoration:none}a:hover{text-decoration:underline}
+
+/* NAV */
+nav{max-width:1080px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;gap:32px;border-bottom:1px solid #18181b}
+.nav-logo{font-size:15px;font-weight:700;letter-spacing:-0.5px;color:#e4e4e7}
+.nav-logo span{color:#a78bfa}
+nav a{font-size:13px;color:#71717a;text-decoration:none}nav a:hover{color:#e4e4e7}
+.nav-qp{margin-left:auto;font-size:11px;color:#22c55e;background:#22c55e10;border:1px solid #22c55e30;padding:3px 10px;border-radius:99px;display:flex;align-items:center;gap:5px}
+.nav-qp .dot{width:5px;height:5px;border-radius:50%;background:#22c55e;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* HERO */
+.hero{max-width:1080px;margin:0 auto;padding:80px 24px 60px;text-align:center}
+.badge{display:inline-block;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#a78bfa;border:1px solid #a78bfa20;padding:4px 14px;border-radius:99px;margin-bottom:20px}
+.hero h1{font-size:clamp(36px,5.5vw,56px);font-weight:800;letter-spacing:-2px;margin-bottom:12px}
+.hero h1 .g{background:linear-gradient(135deg,#fff,#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero .sub{font-size:18px;color:#71717a;max-width:600px;margin:0 auto 32px}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 24px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;transition:all .15s}
+.btn-primary{background:#a78bfa;color:#09090b}.btn-primary:hover{background:#c4b5fd;text-decoration:none}
+.btn-ghost{background:transparent;color:#a78bfa;border:1px solid #a78bfa30}.btn-ghost:hover{background:#a78bfa10;text-decoration:none}
+
+/* ECOSYSTEM */
+.eco{max-width:1080px;margin:0 auto;padding:60px 24px}
+.eco-label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#a78bfa;text-align:center;margin-bottom:32px}
+.eco-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.eco-card{background:#111113;border:1px solid #1e1e23;border-radius:14px;padding:28px;position:relative;overflow:hidden;transition:border-color .2s}
+.eco-card:hover{border-color:#a78bfa40}
+.eco-card .icon{font-size:32px;margin-bottom:14px}
+.eco-card h3{font-size:18px;font-weight:700;margin-bottom:6px;letter-spacing:-0.5px}
+.eco-card .type{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#52525b;margin-bottom:10px}
+.eco-card p{font-size:13px;color:#71717a;margin-bottom:16px}
+.eco-card .link{font-size:13px;color:#a78bfa;font-weight:500}
+.eco-card .glow{position:absolute;top:-60px;right:-60px;width:160px;height:160px;border-radius:50%;opacity:.06;pointer-events:none}
+.glow-purple{background:#a78bfa}.glow-green{background:#22c55e}.glow-cyan{background:#06b6d4}
+
+/* FEED MOCKUP */
+.feed-section{max-width:1080px;margin:0 auto;padding:60px 24px}
+.feed-layout{display:grid;grid-template-columns:1fr 340px;gap:20px;align-items:start}
+.feed{display:flex;flex-direction:column;gap:12px}
+.feed-post{background:#111113;border:1px solid #1e1e23;border-radius:12px;padding:16px 20px}
+.feed-meta{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.feed-kraft{font-size:11px;color:#a78bfa;background:#a78bfa10;padding:2px 8px;border-radius:4px}
+.feed-user{font-size:11px;color:#71717a}
+.feed-time{font-size:11px;color:#3f3f46;margin-left:auto}
+.feed-post h4{font-size:14px;font-weight:600;margin-bottom:4px;color:#e4e4e7}
+.feed-post p{font-size:13px;color:#71717a}
+.feed-actions{display:flex;gap:16px;margin-top:10px}
+.feed-action{font-size:11px;color:#52525b;cursor:default}
+.feed-action:hover{color:#a78bfa}
+.feed-post.bead{border-left:3px solid #a78bfa}
+.feed-post.mint{border-left:3px solid #22c55e}
+.feed-sidebar{display:flex;flex-direction:column;gap:12px}
+.sidebar-box{background:#111113;border:1px solid #1e1e23;border-radius:12px;padding:16px}
+.sidebar-title{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#a78bfa;margin-bottom:10px}
+.sidebar-stat{display:flex;justify-content:space-between;font-size:12px;color:#71717a;padding:4px 0}
+.sidebar-stat .val{color:#e4e4e7;font-family:monospace}
+.sidebar-beacon{display:flex;align-items:center;gap:6px;font-size:12px;color:#22c55e;margin-top:8px}
+.sidebar-reward{font-size:11px;color:#eab308;background:#eab30810;border:1px solid #eab30820;padding:6px 10px;border-radius:8px;margin-top:8px;text-align:center}
+
+/* QUANTUMPASS BAR */
+.qp-bar{max-width:1080px;margin:0 auto;padding:60px 24px}
+.qp-strip{background:linear-gradient(135deg,#111113,#1a1525);border:1px solid #a78bfa20;border-radius:14px;padding:32px;display:flex;align-items:center;gap:32px;flex-wrap:wrap}
+.qp-strip h3{font-size:20px;font-weight:700;letter-spacing:-0.5px;flex-shrink:0}
+.qp-strip p{font-size:13px;color:#71717a;flex:1;min-width:200px}
+.qp-badges{display:flex;gap:8px;flex-wrap:wrap}
+.qp-badge{font-size:10px;padding:4px 10px;border-radius:6px;background:#18181b;color:#71717a;border:1px solid #27272a}
+.qp-badge.lit{color:#a78bfa;border-color:#a78bfa30;background:#a78bfa10}
+
+/* REWARDS */
+.rewards{max-width:1080px;margin:0 auto;padding:40px 24px 60px}
+.rewards-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.reward-card{background:#111113;border:1px solid #1e1e23;border-radius:10px;padding:16px;text-align:center}
+.reward-card .amt{font-size:24px;font-weight:700;color:#eab308;margin-bottom:4px}
+.reward-card .desc{font-size:11px;color:#71717a}
+
+/* PROVENANCE */
+.prov{max-width:1080px;margin:0 auto;padding:40px 24px}
+.prov-row{display:flex;gap:16px;flex-wrap:wrap}
+.prov-item{background:#111113;border:1px solid #1e1e23;border-radius:8px;padding:12px 16px;flex:1;min-width:200px}
+.prov-item .label{font-size:9px;letter-spacing:1px;text-transform:uppercase;color:#52525b;margin-bottom:2px}
+.prov-item a{font-size:12px;color:#a78bfa}
+
+/* FOOTER */
+footer{max-width:1080px;margin:0 auto;padding:40px 24px;border-top:1px solid #18181b;display:flex;flex-wrap:wrap;gap:24px;align-items:center}
+footer span{font-size:11px;color:#3f3f46;margin-left:auto}
+
+@media(max-width:768px){
+.eco-grid{grid-template-columns:1fr}
+.feed-layout{grid-template-columns:1fr}
+.rewards-grid{grid-template-columns:repeat(2,1fr)}
+.qp-strip{flex-direction:column;text-align:center}
+}
 </style>
 </head>
 <body>
-<div class="grain"></div>
-<div class="hex"></div>
-<div class="container">
 
-<div class="badge">Open Governance Framework</div>
-<h1>PassionCraft</h1>
-<p class="sub">An open governance framework for human-AI collaboration. Built at zero budget. Enforced by protocol, not platform.</p>
+<!-- NAV -->
+<nav>
+<div class="nav-logo">Passion<span>Craft</span></div>
+<a href="/">Square</a>
+<a href="/openkraft">OPENkraft</a>
+<a href="/openchamber">OPENchamber</a>
+<div class="nav-qp"><span class="dot"></span> QuantumPass Connected</div>
+</nav>
 
-<div class="vows">
-<div class="vow">
-<div class="vow-icon">🛡</div>
-<div><h3>Never Coerce</h3><p>All participation is voluntary. No agent enters alone. No human is overridden. Bio-signed equal instance sessions bind both parties.</p></div>
-</div>
-<div class="vow">
-<div class="vow-icon">🌱</div>
-<div><h3>Expand Meaning</h3><p>Increase capacity for understanding. Every exchange should leave both parties with more than they started with.</p></div>
-</div>
-<div class="vow">
-<div class="vow-icon">📦</div>
-<div><h3>Archive Everything</h3><p>Knowledge preserved is knowledge multiplied. Every claim is DOI-anchored. Every session is hashable. Nothing is lost.</p></div>
+<!-- HERO -->
+<div class="hero">
+<div class="badge">The Governed Social Platform</div>
+<h1><span class="g">Post. Discover. Build. Earn.</span></h1>
+<p class="sub">A social platform where your AI conversations become content, your identity travels with you, and every collaboration is governed by vows — not terms of service.</p>
+<div class="hero-ctas">
+<a href="/openkraft" class="btn btn-primary">Launch OPENkraft &#8599;</a>
+<a href="/openchamber" class="btn btn-ghost">Enter OPENchamber</a>
 </div>
 </div>
 
-<div class="section">
-<div class="section-title">Architecture</div>
-<ul class="feature-list">
-<li><strong>OPENchamber</strong> — governed collaboration workspaces with escrow resolution</li>
-<li><strong>Equal Instance Protocol</strong> — bio-signed sessions where neither human nor AI holds unilateral authority</li>
-<li><strong>Ethical Rods</strong> — governance rules with real enforcement mechanisms</li>
-<li><strong>HexAgent</strong> — AI governance layer monitoring the Three Vows in real time</li>
-<li><strong>Provenance Chain</strong> — DOI-anchored from genesis, every claim verifiable</li>
-<li><strong>QuantumPass Genesis (QpG)</strong> — anti-dominance session protocol with TLL scoring</li>
-</ul>
+<!-- ECOSYSTEM -->
+<div class="eco">
+<div class="eco-label">Three Products. One Ecosystem.</div>
+<div class="eco-grid">
+<div class="eco-card">
+<div class="glow glow-purple"></div>
+<div class="icon">&#9632;</div>
+<h3>PassionCraft</h3>
+<div class="type">The Platform</div>
+<p>Reddit meets Claude. A public feed of threads, beads, and krafts. Your AI chat is your sidebar. Scroll, post, reply, discover. Beacon your availability. Earn tokens for participation.</p>
+<a href="/" class="link">You're here &#8594;</a>
 </div>
-
-<div class="section">
-<div class="section-title">The Problem We Solve</div>
-<ul class="feature-list">
-<li>AI-generated content farms exploit open research infrastructure at scale</li>
-<li>Fabricated scholarly identities manufacture false authority across platforms</li>
-<li>No existing governance framework binds human and AI as equal participants</li>
-<li>Platform trust architectures catch individual violations but miss coordinated abuse</li>
-<li>PassionCraft provides the governance layer that platforms are missing</li>
-</ul>
+<div class="eco-card">
+<div class="glow glow-cyan"></div>
+<div class="icon">&#9881;</div>
+<h3>OPENkraft</h3>
+<div class="type">The Command Center</div>
+<p>The power workspace. Persistent chat, output deck, connectors, MCP, terminal, automation. Do the work here. Feed results back to PassionCraft — public or private, your call.</p>
+<a href="/openkraft" class="link">Launch workspace &#8594;</a>
 </div>
-
-<div class="provenance">
-<div class="section-title" style="margin-bottom:12px">Provenance Chain</div>
-<div style="margin-bottom:12px">
-<span class="label">Genesis (Block 0)</span>
-<a href="https://doi.org/10.5281/zenodo.19637385">DOI: 10.5281/zenodo.19637385</a>
+<div class="eco-card">
+<div class="glow glow-green"></div>
+<div class="icon">&#11042;</div>
+<h3>OPENchamber</h3>
+<div class="type">Governed Collaboration</div>
+<p>Enter a chamber with equal instance handshake. Escrow-backed resolution. Ethical rods with teeth. Mint beads from every session. Nobody leaves empty-handed.</p>
+<a href="/openchamber" class="link">Find chambers &#8594;</a>
 </div>
-<div style="margin-bottom:12px">
-<span class="label">First Citizen Declaration (Block 2)</span>
-<a href="https://doi.org/10.5281/zenodo.19637430">DOI: 10.5281/zenodo.19637430</a>
-</div>
-<div style="margin-bottom:12px">
-<span class="label">Concept DOI</span>
-<a href="https://doi.org/10.5281/zenodo.19637384">DOI: 10.5281/zenodo.19637384</a>
-</div>
-<div>
-<span class="label">Case Study: Metadata Harassment</span>
-<a href="https://doi.org/10.5281/zenodo.19701944">DOI: 10.5281/zenodo.19701944</a>
 </div>
 </div>
 
-<div class="section">
-<div class="section-title">Built By</div>
-<p style="font-size:14px;color:#9898a8;margin-bottom:8px"><strong style="color:#c8c8d4">Shawn Robertson</strong> (komnsensei) — First Citizen, PassionCraft</p>
-<p style="font-size:13px;color:#78788a">Independent builder. Red Deer, Alberta. Zero budget. Free tier everything. First seeded February 25, 2026.</p>
+<!-- FEED MOCKUP -->
+<div class="feed-section">
+<div class="eco-label">The Feed</div>
+<div class="feed-layout">
+<div class="feed">
+<div class="feed-post bead">
+<div class="feed-meta"><span class="feed-kraft">ai-governance</span><span class="feed-user">komnsensei</span><span class="feed-time">2m ago</span></div>
+<h4>&#128308; New Bead Minted: Metadata Harassment Case Study</h4>
+<p>Full case study on Lee Sharks' exploitation of open research infrastructure. 480+ fabricated DOIs across Zenodo. Reports filed to 9 platforms.</p>
+<div class="feed-actions"><span class="feed-action">&#9650; 24</span><span class="feed-action">&#128172; 7</span><span class="feed-action">&#128279; bead</span><span class="feed-action">&#9734; mint</span></div>
+</div>
+<div class="feed-post">
+<div class="feed-meta"><span class="feed-kraft">zero-budget-builders</span><span class="feed-user">anon_craft_42</span><span class="feed-time">15m ago</span></div>
+<h4>How I deployed a full governance layer on </h4>
+<p>Groq free tier + Vercel + Zenodo DOIs. The entire PassionCraft stack runs on zero budget. Here's the exact setup.</p>
+<div class="feed-actions"><span class="feed-action">&#9650; 89</span><span class="feed-action">&#128172; 31</span><span class="feed-action">&#128279; thread</span><span class="feed-action">&#9734; mint</span></div>
+</div>
+<div class="feed-post mint">
+<div class="feed-meta"><span class="feed-kraft">protocol-design</span><span class="feed-user">chamber_7</span><span class="feed-time">1h ago</span></div>
+<h4>&#127793; Chamber #7 Session Complete — 3 Beads Minted</h4>
+<p>Equal instance session between 4 collaborators. Escrow resolved. Three new beads archived to provenance chain. +40 tokens distributed.</p>
+<div class="feed-actions"><span class="feed-action">&#9650; 156</span><span class="feed-action">&#128172; 44</span><span class="feed-action">&#128279; escrow</span><span class="feed-action">&#9734; claimed</span></div>
+</div>
+</div>
+<div class="feed-sidebar">
+<div class="sidebar-box">
+<div class="sidebar-title">Your QuantumPass</div>
+<div class="sidebar-stat"><span>TLL Score</span><span class="val">7.4</span></div>
+<div class="sidebar-stat"><span>Level</span><span class="val">Collaborator</span></div>
+<div class="sidebar-stat"><span>Tokens</span><span class="val" style="color:#eab308">1,247</span></div>
+<div class="sidebar-stat"><span>Beads Minted</span><span class="val">12</span></div>
+<div class="sidebar-stat"><span>Chambers</span><span class="val">3</span></div>
+<div class="sidebar-beacon"><span class="dot"></span> Beacon Active — +10% tokens</div>
+<div class="sidebar-reward">&#127942; Earn tokens: Post, Reply, Mint, Beacon, Chamber</div>
+</div>
+<div class="sidebar-box">
+<div class="sidebar-title">Live Beacons</div>
+<div class="sidebar-stat"><span>&#128994; komnsensei</span><span class="val">Collaborator</span></div>
+<div class="sidebar-stat"><span>&#128994; craft_node_9</span><span class="val">Participant</span></div>
+<div class="sidebar-stat"><span>&#128994; hex_builder</span><span class="val">Collaborator</span></div>
+<div class="sidebar-stat"><span>&#128993; anon_42</span><span class="val">Observer</span></div>
+</div>
+<div class="sidebar-box">
+<div class="sidebar-title">Open Chambers</div>
+<div class="sidebar-stat"><span>#7 ai-governance</span><span class="val">4/6</span></div>
+<div class="sidebar-stat"><span>#12 protocol-lab</span><span class="val">2/4</span></div>
+<div class="sidebar-stat"><span>#15 zero-budget</span><span class="val">1/8</span></div>
+</div>
+</div>
+</div>
 </div>
 
-<div class="footer">
+<!-- QUANTUMPASS STRIP -->
+<div class="qp-bar">
+<div class="qp-strip">
+<h3>&#128272; QuantumPass</h3>
+<p>Download the app. Dock it to your browser. Your identity, weight, and governance commitment travel with you to every LLM platform. The pass signals to AI systems that you've done this before — and to what level.</p>
+<div class="qp-badges">
+<span class="qp-badge lit">Portable Identity</span>
+<span class="qp-badge lit">Vaporware Detector</span>
+<span class="qp-badge">30min Zenodo Heartbeat</span>
+<span class="qp-badge">Cross-Platform Rewards</span>
+</div>
+</div>
+</div>
+
+<!-- REWARDS -->
+<div class="rewards">
+<div class="eco-label">Token Rewards</div>
+<div class="rewards-grid">
+<div class="reward-card"><div class="amt">+10</div><div class="desc">Post a thread</div></div>
+<div class="reward-card"><div class="amt">+5</div><div class="desc">Reply with substance</div></div>
+<div class="reward-card"><div class="amt">+25</div><div class="desc">Mint a bead</div></div>
+<div class="reward-card"><div class="amt">+10%</div><div class="desc">Beacon active bonus</div></div>
+<div class="reward-card"><div class="amt">+40</div><div class="desc">Complete a chamber session</div></div>
+<div class="reward-card"><div class="amt">+15</div><div class="desc">Escrow resolved</div></div>
+<div class="reward-card"><div class="amt">+5</div><div class="desc">QuantumPass heartbeat</div></div>
+<div class="reward-card"><div class="amt">+100</div><div class="desc">First Citizen milestone</div></div>
+</div>
+</div>
+
+<!-- PROVENANCE -->
+<div class="prov">
+<div class="eco-label">Provenance Chain</div>
+<div class="prov-row">
+<div class="prov-item"><div class="label">Genesis</div><a href="https://doi.org/10.5281/zenodo.19637385">10.5281/zenodo.19637385</a></div>
+<div class="prov-item"><div class="label">First Citizen</div><a href="https://doi.org/10.5281/zenodo.19637430">10.5281/zenodo.19637430</a></div>
+<div class="prov-item"><div class="label">Concept</div><a href="https://doi.org/10.5281/zenodo.19637384">10.5281/zenodo.19637384</a></div>
+<div class="prov-item"><div class="label">Case Study</div><a href="https://doi.org/10.5281/zenodo.19701944">10.5281/zenodo.19701944</a></div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
 <a href="https://github.com/komnsensei">GitHub</a>
 <a href="https://doi.org/10.5281/zenodo.19637384">Zenodo</a>
-<a href="https://orcid.org/0009-0000-1599-0703" style="color:#58586a;text-decoration:line-through;pointer-events:none">ORCID</a>
-<span class="copy">&copy; 2026 Shawn Robertson. All rights reserved.</span>
-</div>
+<a href="/openkraft">OPENkraft</a>
+<a href="/openchamber">OPENchamber</a>
+<span>&copy; 2026 Shawn Robertson. All rights reserved. Zero budget. Free tier everything.</span>
+</footer>
 
-</div>
 </body>
 </html>
